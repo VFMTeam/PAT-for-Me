@@ -12,8 +12,6 @@
     <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
-
-/* ═══════ LOGIN SCREEN ═══════ */
 .login-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px}
 .login-screen.hidden{display:none}
 .login-box{background:#fff;border-radius:16px;padding:40px 36px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:center}
@@ -28,30 +26,20 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
 .login-field input{width:100%;padding:12px 14px 12px 42px;border:2px solid #dee2e6;border-radius:10px;font-size:14px;font-family:'Roboto',sans-serif;transition:all .2s;background:#f8f9fa}
 .login-field input:focus{outline:none;border-color:#e63946;background:#fff;box-shadow:0 0 0 4px rgba(230,57,70,.1)}
 .login-field .field-icon{position:absolute;left:14px;bottom:14px;color:#adb5bd;font-size:16px}
-.login-field input:focus ~ .field-icon{color:#e63946}
+.login-field input:focus~.field-icon{color:#e63946}
 .login-error{background:#fff5f5;border:1.5px solid #dc3545;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#dc3545;display:none;text-align:left}
 .login-error.show{display:flex;align-items:center;gap:8px}
 .login-btn{width:100%;padding:14px;background:linear-gradient(135deg,#e63946,#c1121f);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Roboto',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .login-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,57,70,.4)}
-.login-btn:active{transform:translateY(0)}
 .login-remember{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;color:#666}
 .login-remember input{width:16px;height:16px;accent-color:#e63946;cursor:pointer}
 .login-footer{margin-top:20px;font-size:10px;color:#bbb}
-.login-attempts{font-size:11px;color:#dc3545;margin-top:8px;display:none}
-.login-attempts.show{display:block}
 .login-locked{background:#fff3cd;border:1.5px solid #ffc107;border-radius:8px;padding:12px;margin-bottom:16px;font-size:12px;color:#856404;display:none;text-align:center}
 .login-locked.show{display:block}
-
-/* ═══════ LOGOUT BUTTON ═══════ */
 .btn-logout{background:linear-gradient(135deg,#dc3545,#b02a37);color:#fff}
-
-/* ═══════ SESSION TIMER ═══════ */
 .session-timer{color:#ffc107;font-size:10px;display:flex;align-items:center;gap:4px}
-
-/* ═══════ MAIN APP (everything else) ═══════ */
 .app-container{display:none}
 .app-container.visible{display:block}
-
 .navbar{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:0 12px;min-height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 15px rgba(0,0,0,.3);position:sticky;top:0;z-index:1000;flex-wrap:wrap;gap:6px}
 .logo-text{color:#fff;font-size:14px;font-weight:600}
 .logo-text span{color:#e63946}
@@ -267,55 +255,23 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
 </head>
 <body class="prop-residential">
 
-<!-- ═══════════════════════════════════════ -->
-<!-- ★★★ LOGIN SCREEN ★★★ -->
-<!-- ═══════════════════════════════════════ -->
 <div class="login-screen" id="loginScreen">
     <div class="login-box">
-        <div class="login-logo">
-            <i class="fas fa-shield-alt"></i>
-            <h1>Group Tech <span>Solutions</span></h1>
-            <p>PAT Certificate Generator — Secure Access</p>
-        </div>
-        <div class="login-locked" id="loginLocked">
-            <i class="fas fa-lock"></i> Account locked. Try again in <span id="lockTimer">30</span> seconds.
-        </div>
-        <div class="login-error" id="loginError">
-            <i class="fas fa-exclamation-circle"></i>
-            <span id="loginErrorMsg">Invalid credentials</span>
-        </div>
+        <div class="login-logo"><i class="fas fa-shield-alt"></i><h1>Group Tech <span>Solutions</span></h1><p>PAT Certificate Generator — Secure Access</p></div>
+        <div class="login-locked" id="loginLocked"><i class="fas fa-lock"></i> Locked. Try in <span id="lockTimer">30</span>s.</div>
+        <div class="login-error" id="loginError"><i class="fas fa-exclamation-circle"></i><span id="loginErrorMsg">Invalid credentials</span></div>
         <form class="login-form" onsubmit="handleLogin(event)">
-            <div class="login-field">
-                <label>Username</label>
-                <input type="text" id="loginUser" placeholder="Enter username" autocomplete="username" required>
-                <i class="fas fa-user field-icon"></i>
-            </div>
-            <div class="login-field">
-                <label>Password</label>
-                <input type="password" id="loginPass" placeholder="Enter password" autocomplete="current-password" required>
-                <i class="fas fa-lock field-icon"></i>
-            </div>
-            <div class="login-attempts" id="loginAttempts"></div>
-            <button type="submit" class="login-btn" id="loginBtn">
-                <i class="fas fa-sign-in-alt"></i> Sign In
-            </button>
-            <label class="login-remember">
-                <input type="checkbox" id="rememberMe"> Remember me for 7 days
-            </label>
+            <div class="login-field"><label>Username</label><input type="text" id="loginUser" placeholder="Enter username" autocomplete="username" required><i class="fas fa-user field-icon"></i></div>
+            <div class="login-field"><label>Password</label><input type="password" id="loginPass" placeholder="Enter password" autocomplete="current-password" required><i class="fas fa-lock field-icon"></i></div>
+            <button type="submit" class="login-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+            <label class="login-remember"><input type="checkbox" id="rememberMe"> Remember me for 7 days</label>
         </form>
-        <div class="login-footer">
-            <i class="fas fa-lock" style="font-size:8px"></i> Protected access — Unauthorized use prohibited
-        </div>
+        <div class="login-footer"><i class="fas fa-lock" style="font-size:8px"></i> Protected access</div>
     </div>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- ★★★ MAIN APP (hidden until login) ★★★ -->
-<!-- ═══════════════════════════════════════ -->
 <div class="app-container" id="appContainer">
-
 <div class="floating-dropdown" id="floatingDropdown"><div class="fd-search"><input type="text" id="fdSearchInput" placeholder="Search..." oninput="filterFD()"></div><div id="fdItemList"></div></div>
-
 <nav class="navbar">
     <div class="logo-text">Group Tech <span>Solutions</span> — PAT</div>
     <div class="nav-actions">
@@ -329,7 +285,6 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
         <button class="nav-btn btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
     </div>
 </nav>
-
 <div class="main-container">
 <aside class="sidebar">
     <div class="sidebar-item active" data-idx="0" onclick="goTo(0)"><span class="step-num">1</span> Client</div>
@@ -341,8 +296,6 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
     <div class="sidebar-item" data-idx="6" onclick="goTo(6)"><span class="step-num">7</span> Logo</div>
 </aside>
 <main class="form-area">
-
-<!-- All 7 sections - keeping them compact but complete -->
 <div class="form-section active" id="sec-0">
     <div class="form-header"><div><div class="prop-badge"><i class="fas fa-home"></i><span id="propBadgeText">Residential</span></div><h2><i class="fas fa-user-tie" style="color:#e63946"></i> Client</h2></div><div class="step-indicator">1/7</div></div>
     <div class="validation-banner" id="vb-0"><h4><i class="fas fa-exclamation-triangle"></i> Fix:</h4><ul id="vl-0"></ul></div>
@@ -370,17 +323,12 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
     </div></div>
     <div class="form-navigation"><button class="nav-prev" disabled><i class="fas fa-arrow-left"></i></button><div class="progress-info">1/7</div><button class="nav-next" onclick="tryNext(1)">Next <i class="fas fa-arrow-right"></i></button></div>
 </div>
-
 <div class="form-section" id="sec-1"><div class="form-header"><h2><i class="fas fa-building" style="color:#e63946"></i> Contractor</h2><div class="step-indicator">2/7</div></div><div class="validation-banner" id="vb-1"><h4><i class="fas fa-exclamation-triangle"></i> Fix:</h4><ul id="vl-1"></ul></div><div class="form-card"><div class="form-card-title"><i class="fas fa-id-card"></i> Company</div><div class="form-grid"><div class="form-group full-width"><label>Name <span class="req">*</span></label><input type="text" id="contractorPersonName" value="HASSAN ADAM" data-req="Contractor Name"><div class="field-error-msg" id="err-contractorPersonName">Required</div></div><div class="form-group full-width"><label>Company <span class="req">*</span></label><input type="text" id="tradingTitle" value="Group Tech Solutions UK" data-req="Company"><div class="field-error-msg" id="err-tradingTitle">Required</div></div><div class="form-group full-width"><label>Address</label><textarea id="companyAddress" rows="2">Unit 16, Office 2, Midas Business Centre, Wantz Road, Dagenham</textarea></div><div class="form-group"><label>Postcode</label><input type="text" id="companyPostcode" value="RM10 8PS"></div><div class="form-group"><label>Phone</label><input type="text" id="companyPhone"></div><div class="form-group"><label>Email</label><input type="email" id="companyEmail"></div><div class="form-group"><label>Reg</label><input type="text" id="companyReg"></div><div class="form-group"><label>VAT</label><input type="text" id="vatNumber"></div>
 <div class="form-group full-width"><label><i class="fas fa-signature" style="color:#e63946"></i> Contractor Signature</label><div class="img-upload-section" id="contractorSigSection"><div id="contractorSigPreview" class="img-placeholder" onclick="triggerFile('contractorSigFile')"><i class="fas fa-cloud-upload-alt"></i><p>Upload or URL</p></div><div class="img-actions" id="contractorSigActions"><button class="img-action-btn img-btn-upload" type="button" onclick="triggerFile('contractorSigFile')"><i class="fas fa-upload"></i> Upload</button><button class="img-action-btn img-btn-url" type="button" onclick="toggleUrlInput('contractorSig')"><i class="fas fa-link"></i> URL</button></div><div class="img-url-input" id="contractorSigUrlInput"><input type="text" id="contractorSigUrl" placeholder="https://..."><button type="button" onclick="loadFromUrl('contractorSig')">Load</button></div></div><input type="file" id="contractorSigFile" class="hidden-file" accept="image/*" onchange="uploadImg(event,'contractorSig')"></div>
 </div></div><div class="form-navigation"><button class="nav-prev" onclick="goTo(0)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">2/7</div><button class="nav-next" onclick="tryNext(2)">Next <i class="fas fa-arrow-right"></i></button></div></div>
-
 <div class="form-section" id="sec-2"><div class="form-header"><h2><i class="fas fa-microchip" style="color:#e63946"></i> Equipment</h2><div class="step-indicator">3/7</div></div><div class="validation-banner" id="vb-2"><h4><i class="fas fa-exclamation-triangle"></i> Fix:</h4><ul id="vl-2"></ul></div><div class="form-card"><div class="form-card-title"><i class="fas fa-bolt"></i> PAT Equipment</div><div class="form-grid three"><div class="form-group"><label>Equipment <span class="req">*</span></label><div class="combo-container"><input type="text" id="testEquipment" data-req="Equipment"><button class="combo-toggle" type="button" onclick="toggleCombo('testEquipment')"><i class="fas fa-chevron-down"></i></button><div class="combo-dropdown" id="dd-testEquipment"><div class="combo-option" onclick="pickCombo('testEquipment','Seaward PAT Guard')">Seaward PAT Guard</div><div class="combo-option" onclick="pickCombo('testEquipment','Megger PAT420')">Megger PAT420</div><div class="combo-option" onclick="pickCombo('testEquipment','Fluke 6500-2')">Fluke 6500-2</div><div class="combo-option" onclick="pickCombo('testEquipment','Kewtech KT74')">Kewtech KT74</div></div></div><div class="field-error-msg" id="err-testEquipment">Required</div></div><div class="form-group"><label>Serial <span class="req">*</span></label><input type="text" id="equipmentSerial" data-req="Serial"><div class="field-error-msg" id="err-equipmentSerial">Required</div></div><div class="form-group"><label>Calibration</label><input type="date" id="equipmentCalibDate"></div></div></div><div class="form-navigation"><button class="nav-prev" onclick="goTo(1)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">3/7</div><button class="nav-next" onclick="tryNext(3)">Next <i class="fas fa-arrow-right"></i></button></div></div>
-
 <div class="form-section" id="sec-3"><div class="form-header"><h2><i class="fas fa-plug" style="color:#e63946"></i> Appliances</h2><div class="step-indicator">4/7</div></div><div class="form-card"><div class="form-card-title"><i class="fas fa-list-alt"></i> Test Results</div><div class="auto-count-banner"><i class="fas fa-info-circle"></i> Pick Make → Model auto-filters.</div><div class="table-scroll"><table class="dynamic-table"><thead><tr><th>#</th><th>Make</th><th>Model</th><th>Serial</th><th>Appliance</th><th>V</th><th>Rating</th><th>Visual</th><th>Ins</th><th>Earth</th><th>Plug</th><th>Result</th><th></th></tr></thead><tbody id="appBody"></tbody></table></div><button class="btn-add-row" onclick="addRow()"><i class="fas fa-plus-circle"></i> Add</button></div><div class="form-navigation"><button class="nav-prev" onclick="goTo(2)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">4/7</div><button class="nav-next" onclick="tryNext(4)">Next <i class="fas fa-arrow-right"></i></button></div></div>
-
 <div class="form-section" id="sec-4"><div class="form-header"><h2><i class="fas fa-clipboard-check" style="color:#e63946"></i> Summary</h2><div class="step-indicator">5/7</div></div><div class="form-card"><div class="form-card-title"><i class="fas fa-calculator"></i> Counts</div><div class="form-grid three"><div class="form-group"><label>Total</label><input type="number" id="totalCount" value="0" readonly style="font-weight:800;color:#e63946;text-align:center"></div><div class="form-group"><label>Pass</label><input type="number" id="passCount" value="0" readonly style="font-weight:700;color:#28a745;text-align:center"></div><div class="form-group"><label>Fail</label><input type="number" id="failCount" value="0" readonly style="font-weight:700;color:#dc3545;text-align:center"></div></div></div><div class="form-card"><div class="form-card-title"><i class="fas fa-eye"></i> Visual</div><div class="form-grid three"><div class="form-group"><label>Lead</label><select id="visualLead"><option>PASS</option><option>FAIL</option><option>N/A</option></select></div><div class="form-group"><label>Case</label><select id="visualCase"><option>PASS</option><option>FAIL</option><option>N/A</option></select></div><div class="form-group"><label>Fuse</label><select id="visualFuse"><option>PASS</option><option>FAIL</option><option>N/A</option></select></div></div></div><div class="form-card"><div class="form-card-title"><i class="fas fa-comment-alt"></i> Notes</div><div class="form-group"><textarea id="notes" rows="3" placeholder="Notes..."></textarea></div></div><div class="form-navigation"><button class="nav-prev" onclick="goTo(3)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">5/7</div><button class="nav-next" onclick="tryNext(5)">Next <i class="fas fa-arrow-right"></i></button></div></div>
-
 <div class="form-section" id="sec-5"><div class="form-header"><h2><i class="fas fa-user-shield" style="color:#e63946"></i> Tester</h2><div class="step-indicator">6/7</div></div><div class="validation-banner" id="vb-5"><h4><i class="fas fa-exclamation-triangle"></i> Fix:</h4><ul id="vl-5"></ul></div><div class="form-card"><div class="form-card-title"><i class="fas fa-id-badge"></i> Tester</div><div class="form-grid">
 <div class="form-group"><label>Name <span class="req">*</span></label><div class="combo-container"><input type="text" id="testerName" value="Sajid" data-req="Tester Name"><button class="combo-toggle" type="button" onclick="toggleCombo('testerName')"><i class="fas fa-chevron-down"></i></button><div class="combo-dropdown" id="dd-testerName"><div class="combo-option" onclick="pickCombo('testerName','Sajid')">Sajid</div><div class="combo-option" onclick="pickCombo('testerName','HASSAN ADAM')">HASSAN ADAM</div></div></div><div class="field-error-msg" id="err-testerName">Required</div></div>
 <div class="form-group"><label>Company</label><input type="text" id="testerCompany" value="FRA PRO"></div>
@@ -390,229 +338,75 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
 <div class="form-group"><label>Postcode</label><input type="text" id="testerPostcode" value="RM8 1TX"></div>
 <div class="form-group full-width"><label><i class="fas fa-signature" style="color:#e63946"></i> Tester Signature <span class="req">*</span></label><div class="img-upload-section" id="sigSection" data-req="Tester Signature"><div id="sigPreview" class="img-placeholder" onclick="triggerFile('sigFile')"><i class="fas fa-cloud-upload-alt"></i><p>Upload or URL</p></div><div class="img-actions" id="sigActions"><button class="img-action-btn img-btn-upload" type="button" onclick="triggerFile('sigFile')"><i class="fas fa-upload"></i> Upload</button><button class="img-action-btn img-btn-url" type="button" onclick="toggleUrlInput('sig')"><i class="fas fa-link"></i> URL</button></div><div class="img-url-input" id="sigUrlInput"><input type="text" id="sigUrl" placeholder="https://..."><button type="button" onclick="loadFromUrl('sig')">Load</button></div></div><input type="file" id="sigFile" class="hidden-file" accept="image/*" onchange="uploadImg(event,'sig')"><div class="field-error-msg" id="err-sig">Signature required</div></div>
 </div></div><div class="form-navigation"><button class="nav-prev" onclick="goTo(4)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">6/7</div><button class="nav-next" onclick="tryNext(6)">Next <i class="fas fa-arrow-right"></i></button></div></div>
-
 <div class="form-section" id="sec-6"><div class="form-header"><h2><i class="fas fa-image" style="color:#e63946"></i> Logo</h2><div class="step-indicator">7/7</div></div><div class="form-card"><div class="form-card-title"><i class="fas fa-image"></i> Logo (optional)</div><div class="form-group"><div class="img-upload-section" id="logoSection"><div id="logoPreview" class="img-placeholder logo-preview-container" onclick="triggerFile('logoFile')"><i class="fas fa-cloud-upload-alt"></i><p>Upload or URL</p></div><div class="img-actions" id="logoActions"><button class="img-action-btn img-btn-upload" type="button" onclick="triggerFile('logoFile')"><i class="fas fa-upload"></i> Upload</button><button class="img-action-btn img-btn-url" type="button" onclick="toggleUrlInput('logo')"><i class="fas fa-link"></i> URL</button></div><div class="img-url-input" id="logoUrlInput"><input type="text" id="logoUrl" placeholder="https://..."><button type="button" onclick="loadFromUrl('logo')">Load</button></div></div><input type="file" id="logoFile" class="hidden-file" accept="image/*" onchange="uploadImg(event,'logo')"></div></div><div class="form-navigation"><button class="nav-prev" onclick="goTo(5)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">7/7</div><button class="nav-next nav-finish" onclick="showPreview()"><i class="fas fa-check-circle"></i> Preview</button></div></div>
-
 </main></div>
-
 <div class="preview-overlay" id="previewOverlay"><div class="preview-container"><div class="preview-toolbar"><div class="preview-toolbar-title"><i class="fas fa-certificate" style="color:#e63946"></i> Preview</div><div class="preview-toolbar-actions"><button class="nav-btn btn-generate-img" onclick="genPDFImage()"><i class="fas fa-file-image"></i> PDF</button><button class="nav-btn btn-reset" onclick="closePreview()"><i class="fas fa-times"></i> Close</button></div></div><div id="certContent"></div></div></div>
-
 <div class="modal-overlay" id="projectModal" onclick="handleModalClick(event)"><div class="modal-box"><div class="modal-header"><h3><i class="fas fa-folder-open"></i> Projects</h3><button class="modal-close" onclick="closeModal()">&times;</button></div><div class="modal-body"><div class="modal-section"><div class="modal-section-title"><i class="fas fa-download"></i> Export</div><button class="modal-btn mbtn-export" onclick="exportProject('patproj')"><i class="fas fa-file-export"></i> .patproj</button><button class="modal-btn mbtn-export-json" onclick="exportProject('json')"><i class="fas fa-code"></i> .json</button></div><div class="modal-divider"></div><div class="modal-section"><div class="modal-section-title"><i class="fas fa-upload"></i> Import</div><div class="drop-zone" id="dropZone" onclick="document.getElementById('importFileInput').click()"><i class="fas fa-cloud-upload-alt"></i><p><strong>Click</strong> or drag</p><span class="supp">.patproj · .json</span></div><input type="file" id="importFileInput" class="hidden-file" accept=".patproj,.json" onchange="importProject(event)"></div><div class="modal-divider"></div><div class="modal-section"><div class="modal-section-title"><i class="fas fa-bookmark"></i> Quick Save</div><button class="modal-btn mbtn-quick-save" onclick="quickSave()"><i class="fas fa-save"></i> Save</button></div><div class="modal-divider"></div><div class="modal-section"><div class="modal-section-title"><i class="fas fa-history"></i> Auto-Save</div><div id="autosaveStatusBox"></div><button class="modal-btn mbtn-restore" onclick="restoreAutoSave()"><i class="fas fa-redo-alt"></i> Restore</button><button class="modal-btn mbtn-danger" style="margin-top:6px" onclick="clearAutoSave()"><i class="fas fa-trash-alt"></i> Clear</button></div><div class="modal-divider"></div><div class="modal-section"><div class="modal-section-title"><i class="fas fa-clock"></i> Saves</div><div id="recentSavesList"></div></div></div></div></div>
-
-</div><!-- end app-container -->
-
+</div>
 <div class="generating-overlay" id="genOverlay"><div class="generating-box"><i class="fas fa-cog spinner"></i><p id="genMsg">Generating...</p></div></div>
 <div class="toast" id="toast"><i id="toastIcon" class="fas fa-check-circle"></i><span id="toastMsg"></span></div>
 
 <script>
-// ════════════════════════════════════════════════
-// ★★★ LOGIN CREDENTIALS — CHANGE THESE ★★★
-// ════════════════════════════════════════════════
+// ★★★ SINGLE ADMIN LOGIN ★★★
 var AUTH_USERS = [
-    { username: 'admin',  password: 'RaKiB2811@' }
+    { username: 'admin', password: 'RaKiB2811@' }
 ];
-var SESSION_HOURS = 8;       // Auto-logout after 8 hours
-var MAX_ATTEMPTS = 5;        // Lock after 5 failed attempts
-var LOCK_SECONDS = 60;       // Lock duration in seconds
-// ════════════════════════════════════════════════
+var SESSION_HOURS=8,MAX_ATTEMPTS=5,LOCK_SECONDS=60;
 
-// ★★★ DEFAULT IMAGE URLs ★★★
 var DEFAULT_IMAGES = {
     logo:          'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/cl.jpeg',
     sig:           'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/sajid.png',
     contractorSig: 'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/sh.jpeg'
 };
 
-// ════════════════ LOGIN SYSTEM ════════════════
-var loginAttempts = 0;
-var lockUntil = 0;
-var sessionInterval = null;
-var sessionExpiry = 0;
-var AUTH_KEY = 'pat_auth_session';
-var LOCK_KEY = 'pat_auth_lock';
-
+var loginAttempts=0,lockUntil=0,sessionInterval=null,sessionExpiry=0;
+var AUTH_KEY='pat_auth_s',LOCK_KEY='pat_auth_l';
 function hashStr(s){var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return h.toString(36);}
+function handleLogin(e){e.preventDefault();var lockData=JSON.parse(localStorage.getItem(LOCK_KEY)||'{}');if(lockData.until&&Date.now()<lockData.until){showLocked(Math.ceil((lockData.until-Date.now())/1000));return;}var user=document.getElementById('loginUser').value.trim().toLowerCase(),pass=document.getElementById('loginPass').value;var valid=AUTH_USERS.some(function(u){return u.username.toLowerCase()===user&&u.password===pass;});if(valid){loginAttempts=0;localStorage.removeItem(LOCK_KEY);var remember=document.getElementById('rememberMe').checked;var expiry=Date.now()+(remember?7*24*60*60*1000:SESSION_HOURS*60*60*1000);localStorage.setItem(AUTH_KEY,JSON.stringify({user:user,expiry:expiry,hash:hashStr(user+expiry)}));showApp({user:user,expiry:expiry});}else{loginAttempts++;var remaining=MAX_ATTEMPTS-loginAttempts;var errEl=document.getElementById('loginError'),errMsg=document.getElementById('loginErrorMsg');errEl.classList.add('show');if(remaining<=0){localStorage.setItem(LOCK_KEY,JSON.stringify({until:Date.now()+LOCK_SECONDS*1000}));loginAttempts=0;showLocked(LOCK_SECONDS);errEl.classList.remove('show');}else{errMsg.textContent='Invalid credentials ('+remaining+' left)';}document.getElementById('loginPass').value='';}}
+function showLocked(secs){var el=document.getElementById('loginLocked'),timer=document.getElementById('lockTimer');el.classList.add('show');document.getElementById('loginBtn').disabled=true;var r=secs;timer.textContent=r;var iv=setInterval(function(){r--;timer.textContent=r;if(r<=0){clearInterval(iv);el.classList.remove('show');document.getElementById('loginBtn').disabled=false;localStorage.removeItem(LOCK_KEY);}},1000);}
+function showApp(session){document.getElementById('loginScreen').classList.add('hidden');document.getElementById('appContainer').classList.add('visible');sessionExpiry=session.expiry;updateSessionTimer();sessionInterval=setInterval(function(){if(Date.now()>=sessionExpiry){handleLogout('Session expired');return;}updateSessionTimer();},1000);initApp();}
+function updateSessionTimer(){var left=sessionExpiry-Date.now();if(left<=0){document.getElementById('sessionTimeLeft').textContent='Expired';return;}var h=Math.floor(left/3600000),m=Math.floor((left%3600000)/60000),s=Math.floor((left%60000)/1000);document.getElementById('sessionTimeLeft').textContent=(h>0?h+'h ':'')+String(m).padStart(2,'0')+'m '+String(s).padStart(2,'0')+'s';}
+function handleLogout(msg){localStorage.removeItem(AUTH_KEY);clearInterval(sessionInterval);document.getElementById('appContainer').classList.remove('visible');document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';document.getElementById('loginError').classList.remove('show');if(msg)alert(msg);}
+function checkExistingSession(){var raw=localStorage.getItem(AUTH_KEY);if(!raw)return;try{var s=JSON.parse(raw);if(s.expiry&&Date.now()<s.expiry&&s.hash===hashStr(s.user+s.expiry)){showApp(s);}}catch(e){}};
+(function(){var ld=JSON.parse(localStorage.getItem(LOCK_KEY)||'{}');if(ld.until&&Date.now()<ld.until)showLocked(Math.ceil((ld.until-Date.now())/1000));checkExistingSession();})();
 
-function handleLogin(e) {
-    e.preventDefault();
-    // Check lock
-    var lockData = JSON.parse(localStorage.getItem(LOCK_KEY)||'{}');
-    if(lockData.until && Date.now() < lockData.until){
-        showLocked(Math.ceil((lockData.until - Date.now())/1000));
-        return;
-    }
-    var user = document.getElementById('loginUser').value.trim().toLowerCase();
-    var pass = document.getElementById('loginPass').value;
-    var valid = AUTH_USERS.some(function(u){return u.username.toLowerCase()===user && u.password===pass;});
-    if(valid){
-        loginAttempts=0;
-        localStorage.removeItem(LOCK_KEY);
-        var remember = document.getElementById('rememberMe').checked;
-        var expiry = Date.now() + (remember ? 7*24*60*60*1000 : SESSION_HOURS*60*60*1000);
-        var session = {user:user, expiry:expiry, hash:hashStr(user+expiry)};
-        localStorage.setItem(AUTH_KEY, JSON.stringify(session));
-        showApp(session);
-    } else {
-        loginAttempts++;
-        var remaining = MAX_ATTEMPTS - loginAttempts;
-        var errEl = document.getElementById('loginError');
-        var errMsg = document.getElementById('loginErrorMsg');
-        errEl.classList.add('show');
-        if(remaining <= 0){
-            var lockEnd = Date.now() + LOCK_SECONDS*1000;
-            localStorage.setItem(LOCK_KEY, JSON.stringify({until:lockEnd}));
-            loginAttempts = 0;
-            showLocked(LOCK_SECONDS);
-            errEl.classList.remove('show');
-        } else {
-            errMsg.textContent = 'Invalid username or password (' + remaining + ' attempts left)';
-        }
-        document.getElementById('loginPass').value = '';
-        document.getElementById('loginPass').focus();
-    }
-}
-
-function showLocked(secs){
-    var el = document.getElementById('loginLocked');
-    var timer = document.getElementById('lockTimer');
-    el.classList.add('show');
-    document.getElementById('loginBtn').disabled = true;
-    var remaining = secs;
-    timer.textContent = remaining;
-    var iv = setInterval(function(){
-        remaining--;
-        timer.textContent = remaining;
-        if(remaining<=0){
-            clearInterval(iv);
-            el.classList.remove('show');
-            document.getElementById('loginBtn').disabled = false;
-            localStorage.removeItem(LOCK_KEY);
-        }
-    },1000);
-}
-
-function showApp(session){
-    document.getElementById('loginScreen').classList.add('hidden');
-    document.getElementById('appContainer').classList.add('visible');
-    sessionExpiry = session.expiry;
-    updateSessionTimer();
-    sessionInterval = setInterval(function(){
-        if(Date.now() >= sessionExpiry){handleLogout('Session expired');return;}
-        updateSessionTimer();
-    },1000);
-    initApp();
-}
-
-function updateSessionTimer(){
-    var left = sessionExpiry - Date.now();
-    if(left<=0){document.getElementById('sessionTimeLeft').textContent='Expired';return;}
-    var h=Math.floor(left/3600000),m=Math.floor((left%3600000)/60000),s=Math.floor((left%60000)/1000);
-    document.getElementById('sessionTimeLeft').textContent=
-        (h>0?h+'h ':'')+(m>0?String(m).padStart(2,'0')+'m ':'')+String(s).padStart(2,'0')+'s';
-}
-
-function handleLogout(msg){
-    localStorage.removeItem(AUTH_KEY);
-    clearInterval(sessionInterval);
-    document.getElementById('appContainer').classList.remove('visible');
-    document.getElementById('loginScreen').classList.remove('hidden');
-    document.getElementById('loginUser').value='';
-    document.getElementById('loginPass').value='';
-    document.getElementById('loginError').classList.remove('show');
-    if(msg)showToast(msg,'info');
-}
-
-function checkExistingSession(){
-    var raw=localStorage.getItem(AUTH_KEY);
-    if(!raw)return;
-    try{
-        var session=JSON.parse(raw);
-        if(session.expiry && Date.now()<session.expiry && session.hash===hashStr(session.user+session.expiry)){
-            showApp(session);
-            return;
-        }
-    }catch(e){}
-    localStorage.removeItem(AUTH_KEY);
-}
-
-// Check lock on load
-(function(){
-    var lockData=JSON.parse(localStorage.getItem(LOCK_KEY)||'{}');
-    if(lockData.until&&Date.now()<lockData.until){
-        showLocked(Math.ceil((lockData.until-Date.now())/1000));
-    }
-    checkExistingSession();
-})();
-
-// ════════════════ MAKE/MODEL DATABASE ════════════════
 var MAKE_MODELS={'Samsung':['Galaxy Charger','Smart TV UE50','Microwave MS23','Washing Machine WW80','Fridge RB31','Vacuum Jet 70','Monitor C27'],'LG':['OLED TV 55C3','Washing Machine F4V5','Fridge GBB72','NeoChef Microwave','CordZero Vacuum','Monitor 27UP850'],'Bosch':['Serie 4 Washer','Serie 6 DW','Tassimo Coffee','Athlet Vacuum','Toaster TAT6A','Iron TDA302'],'Russell Hobbs':['Adventure Kettle','Inspire Toaster','Microwave RHMM701','Steam Iron 23061','Luna Blender'],'Dyson':['V15 Detect','V11 Absolute','V8 Animal','Pure Cool TP07','Airwrap','Supersonic Dryer'],'Breville':['CoffeeHouse','Flow Kettle','Mostra Toaster','Blend Active Pro'],'Kenwood':['Chef Titanium XL','MultiPro Express','Triblade XL','kMix Mixer'],'Morphy Richards':['Verve Kettle','Venture Toaster','Evoke Kettle','Supervac Cordless'],'Philips':['Airfryer XXL','OneBlade Pro','Espresso 3200','PerfectCare Iron'],'Panasonic':['Microwave NN-E28','Bread Maker SD-B','Iron NI-E510','TV TX-50JX'],'Hotpoint':['ActiveCare Washer','Day 1 Fridge','MF20G Microwave'],'Beko':['Pro Smart Washer','DW DFN164','Fridge CFG3582'],'Tefal':['Easy Fry','ActiFry Genius','Express Iron','Maison Kettle'],'Miele':['TwinDos W1','T1 Dryer','G 7000 DW'],'Siemens':['iQ700 Washer','iQ500 DW','iQ700 Oven']};
 var MAKES=Object.keys(MAKE_MODELS).sort();
 var APPLIANCE_TYPES=['Kettle','Toaster','Microwave','Iron','Vacuum Cleaner','Hair Dryer','Fan Heater','Electric Fan','Floor Lamp','Desk Lamp','Extension Lead','Power Strip','Charger','Laptop','Desktop Computer','Monitor','Printer','Fridge','Freezer','Washing Machine','Tumble Dryer','Dishwasher','Coffee Machine','Blender','Electric Drill','Radio','TV','Phone Charger','Heater'];
-
 var propConfig={residential:{label:'Residential'},commercial:{label:'Commercial'},industrial:{label:'Industrial'},hmo:{label:'HMO'},landlord:{label:'Landlord'},educational:{label:'Educational'},healthcare:{label:'Healthcare'},hospitality:{label:'Hospitality'},retail:{label:'Retail'},construction:{label:'Construction'}};
 var images={sig:'',contractorSig:'',logo:''};
 var rowCount=0,curSec=0,autoSaveTimer=null,fdCurrentInput=null,fdCurrentList=[],fdCurrentRow=null,fdCurrentType='';
-var AUTOSAVE_KEY='pat_as_v8',QUICKSAVE_KEY='pat_qs_v8';
+var AUTOSAVE_KEY='pat_as_v9',QUICKSAVE_KEY='pat_qs_v9';
 var ALL_FIELDS=['propertyType','clientName','clientAddress','clientPostcode','clientPhone','clientEmail','hmoLicense','hmoTenants','tenantName','propManager','siteManager','businessHours','schoolName','headTeacher','healthcareType','cqcReg','numRooms','starRating','shopType','tradingHours','siteRef','constSiteManager','plantNumber','opsManager','certNumber','certNumberMode','testDate','retestDate','retestMonths','contractorPersonName','tradingTitle','companyAddress','companyPostcode','companyPhone','companyEmail','companyReg','vatNumber','testEquipment','equipmentSerial','equipmentCalibDate','visualLead','visualCase','visualFuse','notes','testerName','testerCompany','testerId','certification','testerAddress','testerPostcode'];
 var SECTION_REQUIRED={0:['clientName','clientAddress','testDate'],1:['contractorPersonName','tradingTitle'],2:['testEquipment','equipmentSerial'],3:[],4:[],5:['testerName'],6:[]};
 function g(id){var el=document.getElementById(id);return el?(el.value||''):'';}
 function getPdfFilename(){return'PAT_'+(g('clientName')||'Cert').replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)+'_'+g('certNumber')+'.pdf';}
 
-function initApp(){
-    setToday();genCertNum();addRow();setupAutoSave();setupDragDrop();setupFD();
-    // Load defaults
-    if(DEFAULT_IMAGES.logo)loadImageFromURL(DEFAULT_IMAGES.logo,'logo');
-    if(DEFAULT_IMAGES.sig)loadImageFromURL(DEFAULT_IMAGES.sig,'sig');
-    if(DEFAULT_IMAGES.contractorSig)loadImageFromURL(DEFAULT_IMAGES.contractorSig,'contractorSig');
-}
+function initApp(){setToday();genCertNum();addRow();setupAutoSave();setupDragDrop();setupFD();if(DEFAULT_IMAGES.logo)loadImageFromURL(DEFAULT_IMAGES.logo,'logo');if(DEFAULT_IMAGES.sig)loadImageFromURL(DEFAULT_IMAGES.sig,'sig');if(DEFAULT_IMAGES.contractorSig)loadImageFromURL(DEFAULT_IMAGES.contractorSig,'contractorSig');}
 
-// ════════════════ IMAGE FROM URL ════════════════
-function loadImageFromURL(url,type){
-    if(!url)return;
-    var img=new Image();img.crossOrigin='Anonymous';
-    img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;c.getContext('2d').drawImage(img,0,0);try{applyImage(type,c.toDataURL('image/png'),'url');}catch(e){console.warn('CORS blocked for '+type);}};
-    img.onerror=function(){console.warn('Failed: '+url);};
-    img.src=url+'?t='+Date.now();
-}
+function loadImageFromURL(url,type){if(!url)return;var img=new Image();img.crossOrigin='Anonymous';img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;c.getContext('2d').drawImage(img,0,0);try{applyImage(type,c.toDataURL('image/png'),'url');}catch(e){}};img.onerror=function(){};img.src=url+'?t='+Date.now();}
 function toggleUrlInput(t){document.getElementById(t+'UrlInput').classList.toggle('show');}
 function loadFromUrl(t){var u=document.getElementById(t+'Url').value.trim();if(!u)return;loadImageFromURL(u,t);document.getElementById(t+'UrlInput').classList.remove('show');}
 function triggerFile(id){document.getElementById(id).click();}
 function uploadImg(e,t){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){applyImage(t,ev.target.result,'file');scheduleAutoSave();};r.readAsDataURL(f);e.target.value='';}
-
-function applyImage(type,dataUrl,source){
-    images[type]=dataUrl;
-    var sec=document.getElementById(type+'Section'),prev=document.getElementById(type+'Preview'),acts=document.getElementById(type+'Actions');
-    if(!sec||!prev)return;
-    sec.classList.add('has-image');sec.classList.remove('field-error');
-    var srcLbl=source==='url'?'<div class="img-source-label from-url"><i class="fas fa-link"></i> From URL</div>':'<div class="img-source-label from-file"><i class="fas fa-file-image"></i> Uploaded</div>';
-    var mh=type==='logo'?'max-height:120px':'max-height:65px';
-    prev.onclick=null;prev.className='img-preview-container'+(type==='logo'?' logo-preview-container':'');
-    prev.innerHTML='<img src="'+dataUrl+'" style="'+mh+';max-width:100%;object-fit:contain;border-radius:4px">'+srcLbl;
-    var fid=type==='sig'?'sigFile':type==='contractorSig'?'contractorSigFile':'logoFile';
-    acts.innerHTML='<button class="img-action-btn img-btn-upload" type="button" onclick="triggerFile(\''+fid+'\')"><i class="fas fa-upload"></i> Change</button><button class="img-action-btn img-btn-url" type="button" onclick="toggleUrlInput(\''+type+'\')"><i class="fas fa-link"></i> URL</button><button class="img-action-btn img-btn-reset" type="button" onclick="resetToDefault(\''+type+'\')"><i class="fas fa-undo"></i> Default</button><button class="img-action-btn img-btn-remove" type="button" onclick="removeImg(\''+type+'\')"><i class="fas fa-trash"></i></button>';
-    if(type==='sig'){var e=document.getElementById('err-sig');if(e)e.classList.remove('show');}
-    scheduleAutoSave();
-}
-function resetToDefault(t){if(DEFAULT_IMAGES[t])loadImageFromURL(DEFAULT_IMAGES[t],t);else showToast('No default URL','info');}
+function applyImage(type,dataUrl,source){images[type]=dataUrl;var sec=document.getElementById(type+'Section'),prev=document.getElementById(type+'Preview'),acts=document.getElementById(type+'Actions');if(!sec||!prev)return;sec.classList.add('has-image');sec.classList.remove('field-error');var srcLbl=source==='url'?'<div class="img-source-label from-url"><i class="fas fa-link"></i> From URL</div>':'<div class="img-source-label from-file"><i class="fas fa-file-image"></i> Uploaded</div>';var mh=type==='logo'?'max-height:120px':'max-height:65px';prev.onclick=null;prev.className='img-preview-container'+(type==='logo'?' logo-preview-container':'');prev.innerHTML='<img src="'+dataUrl+'" style="'+mh+';max-width:100%;object-fit:contain;border-radius:4px">'+srcLbl;var fid=type==='sig'?'sigFile':type==='contractorSig'?'contractorSigFile':'logoFile';acts.innerHTML='<button class="img-action-btn img-btn-upload" type="button" onclick="triggerFile(\''+fid+'\')"><i class="fas fa-upload"></i> Change</button><button class="img-action-btn img-btn-url" type="button" onclick="toggleUrlInput(\''+type+'\')"><i class="fas fa-link"></i> URL</button><button class="img-action-btn img-btn-reset" type="button" onclick="resetToDefault(\''+type+'\')"><i class="fas fa-undo"></i> Default</button><button class="img-action-btn img-btn-remove" type="button" onclick="removeImg(\''+type+'\')"><i class="fas fa-trash"></i></button>';if(type==='sig'){var e=document.getElementById('err-sig');if(e)e.classList.remove('show');}scheduleAutoSave();}
+function resetToDefault(t){if(DEFAULT_IMAGES[t])loadImageFromURL(DEFAULT_IMAGES[t],t);}
 function removeImg(t){images[t]='';var s=document.getElementById(t+'Section'),p=document.getElementById(t+'Preview'),a=document.getElementById(t+'Actions');var fid=t==='sig'?'sigFile':t==='contractorSig'?'contractorSigFile':'logoFile';if(s)s.classList.remove('has-image');if(p){p.className='img-placeholder'+(t==='logo'?' logo-preview-container':'');p.onclick=function(){triggerFile(fid);};p.innerHTML='<i class="fas fa-cloud-upload-alt"></i><p>Upload or URL</p>';}a.innerHTML='<button class="img-action-btn img-btn-upload" type="button" onclick="triggerFile(\''+fid+'\')"><i class="fas fa-upload"></i> Upload</button><button class="img-action-btn img-btn-url" type="button" onclick="toggleUrlInput(\''+t+'\')"><i class="fas fa-link"></i> URL</button>';document.getElementById(t+'UrlInput').classList.remove('show');}
 
-// ════════════════ VALIDATION ════════════════
 function validateSection(s){var errs=[],ids=SECTION_REQUIRED[s]||[];ids.forEach(function(id){var el=document.getElementById(id);if(el)el.classList.remove('field-error');var er=document.getElementById('err-'+id);if(er)er.classList.remove('show');});ids.forEach(function(id){var el=document.getElementById(id);if(!el)return;if(!el.value.trim()){el.classList.add('field-error');var er=document.getElementById('err-'+id);if(er)er.classList.add('show');errs.push((el.getAttribute('data-req')||id)+' required');}});if(s===5&&!images.sig){errs.push('Tester Signature required');document.getElementById('sigSection').classList.add('field-error');var es=document.getElementById('err-sig');if(es)es.classList.add('show');}else if(s===5){document.getElementById('sigSection').classList.remove('field-error');var e2=document.getElementById('err-sig');if(e2)e2.classList.remove('show');}var vb=document.getElementById('vb-'+s),vl=document.getElementById('vl-'+s);if(vb&&vl){if(errs.length){vl.innerHTML=errs.map(function(e){return'<li>'+esc(e)+'</li>';}).join('');vb.classList.add('show');}else vb.classList.remove('show');}return!errs.length;}
 function tryNext(t){var c=t-1;if(validateSection(c)){var si=document.querySelector('.sidebar-item[data-idx="'+c+'"]');if(si){si.classList.add('completed');si.classList.remove('has-error');}goTo(t);}else{var si=document.querySelector('.sidebar-item[data-idx="'+c+'"]');if(si){si.classList.remove('completed');si.classList.add('has-error');}showToast('Fill required fields or N/A','error');window.scrollTo({top:0,behavior:'smooth'});}}
 document.addEventListener('input',function(e){if(e.target.classList.contains('field-error')&&e.target.value.trim()){e.target.classList.remove('field-error');var er=document.getElementById('err-'+e.target.id);if(er)er.classList.remove('show');}});
 
-// ════════════════ FLOATING DROPDOWN ════════════════
 function setupFD(){document.addEventListener('mousedown',function(e){var fd=document.getElementById('floatingDropdown');if(fd.classList.contains('open')&&!fd.contains(e.target)&&!e.target.classList.contains('tbl-combo-btn'))closeFD();document.querySelectorAll('.combo-dropdown.show').forEach(function(d){if(!d.parentElement.contains(e.target))d.classList.remove('show');});});}
 function openFD(b,l,t,r){fdCurrentInput=b.parentElement.querySelector('input');fdCurrentList=l;fdCurrentType=t;fdCurrentRow=r;var fd=document.getElementById('floatingDropdown');document.getElementById('fdSearchInput').value='';renderFDItems(l);var rc=b.getBoundingClientRect();fd.style.minWidth='210px';fd.style.maxHeight='280px';fd.style.left=Math.max(4,rc.left-80)+'px';fd.style.bottom='';fd.style.top='';if(window.innerHeight-rc.bottom<180)fd.style.bottom=(window.innerHeight-rc.top+4)+'px';else fd.style.top=(rc.bottom+4)+'px';fd.classList.add('open');setTimeout(function(){document.getElementById('fdSearchInput').focus();},40);}
 function closeFD(){document.getElementById('floatingDropdown').classList.remove('open');}
 function renderFDItems(l){var h='';l.forEach(function(i){h+='<div class="fd-item" onmousedown="pickFDItem(\''+i.replace(/'/g,"\\'")+'\')">' +i+'</div>';});h+='<div class="fd-item fd-na" onmousedown="pickFDItem(\'N/A\')">N/A</div>';document.getElementById('fdItemList').innerHTML=h;}
 function filterFD(){renderFDItems(fdCurrentList.filter(function(i){return i.toLowerCase().indexOf(document.getElementById('fdSearchInput').value.toLowerCase())!==-1;}));}
-function pickFDItem(v){if(fdCurrentInput){fdCurrentInput.value=v;}if(fdCurrentType==='make'&&fdCurrentRow){var m=fdCurrentRow.cells[2]?fdCurrentRow.cells[2].querySelector('input'):null;if(m&&v!=='N/A')m.value='';}closeFD();scheduleAutoSave();}
+function pickFDItem(v){if(fdCurrentInput)fdCurrentInput.value=v;if(fdCurrentType==='make'&&fdCurrentRow){var m=fdCurrentRow.cells[2]?fdCurrentRow.cells[2].querySelector('input'):null;if(m&&v!=='N/A')m.value='';}closeFD();scheduleAutoSave();}
 function openMakeDrop(b){openFD(b,MAKES,'make',b.closest('tr'));}
 function openModelDrop(b){var tr=b.closest('tr'),mi=tr.cells[1]?tr.cells[1].querySelector('input'):null,mv=mi?mi.value.trim():'',models=[];if(mv&&MAKE_MODELS[mv])models=MAKE_MODELS[mv];else{Object.values(MAKE_MODELS).forEach(function(m){models=models.concat(m);});models=[...new Set(models)].sort();}openFD(b,models,'model',tr);}
 function openAppDrop(b){openFD(b,APPLIANCE_TYPES,'appliance',b.closest('tr'));}
 
-// ════════════════ NAV / FORM ════════════════
 function goTo(i){document.querySelectorAll('.form-section').forEach(function(s){s.classList.remove('active');});document.querySelectorAll('.sidebar-item').forEach(function(s){s.classList.remove('active');});document.getElementById('sec-'+i).classList.add('active');document.querySelector('.sidebar-item[data-idx="'+i+'"]').classList.add('active');curSec=i;window.scrollTo({top:0,behavior:'smooth'});}
 function changePropertyType(){document.body.className='prop-'+g('propertyType');document.getElementById('propBadgeText').textContent=(propConfig[g('propertyType')]||{label:''}).label;scheduleAutoSave();}
 function genCertNum(){document.getElementById('certNumber').value=(g('clientPostcode').replace(/\s/g,'').toUpperCase()||'PAT')+'-'+String(Math.floor(Math.random()*90000)+10000);}
@@ -623,25 +417,21 @@ function calcRetest(){var t=g('testDate');if(!t)return;var d=new Date(t);d.setMo
 function toggleCombo(id){var d=document.getElementById('dd-'+id);document.querySelectorAll('.combo-dropdown.show').forEach(function(x){x.classList.remove('show');});d.classList.toggle('show');}
 function pickCombo(id,v){document.getElementById(id).value=v;document.getElementById('dd-'+id).classList.remove('show');}
 
-// ════════════════ TABLE ════════════════
 function addRow(){rowCount++;var tr=document.createElement('tr');tr.innerHTML='<td style="text-align:center;font-size:11px;font-weight:700;color:#888">'+rowCount+'</td><td><div class="tbl-combo-wrap"><input type="text" placeholder="Make"><button type="button" class="tbl-combo-btn" onmousedown="event.preventDefault();openMakeDrop(this)">&#9660;</button></div></td><td><div class="tbl-combo-wrap"><input type="text" placeholder="Model"><button type="button" class="tbl-combo-btn" onmousedown="event.preventDefault();openModelDrop(this)">&#9660;</button></div></td><td><input type="text" placeholder="Serial"></td><td><div class="tbl-combo-wrap"><input type="text" placeholder="Appliance"><button type="button" class="tbl-combo-btn" onmousedown="event.preventDefault();openAppDrop(this)">&#9660;</button></div></td><td><select><option value="">—</option><option>230V</option><option>110V</option><option>12V</option><option>415V</option><option>N/A</option></select></td><td><input type="text" placeholder="W/A"></td><td><select><option value="">—</option><option>PASS</option><option>FAIL</option><option>N/A</option></select></td><td><input type="text" placeholder="MΩ"></td><td><input type="text" placeholder="Ω"></td><td><select><option value="">—</option><option>PASS</option><option>FAIL</option><option>N/A</option></select></td><td><select class="result-sel" onchange="colorResult(this)"><option value="">—</option><option value="PASS">PASS</option><option value="FAIL">FAIL</option><option value="N/A">N/A</option></select></td><td><button class="btn-remove-row" type="button" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>';document.getElementById('appBody').appendChild(tr);updateCounts();}
 function removeRow(b){b.closest('tr').remove();renumber();updateCounts();scheduleAutoSave();}
 function renumber(){document.querySelectorAll('#appBody tr').forEach(function(t,i){t.cells[0].textContent=i+1;});rowCount=document.querySelectorAll('#appBody tr').length;}
 function colorResult(s){if(!s.value||s.value==='—'){s.style.color='';s.style.fontWeight='';return;}s.style.color=s.value==='PASS'?'#28a745':s.value==='FAIL'?'#dc3545':'#888';s.style.fontWeight='700';}
 function updateCounts(){var r=document.querySelectorAll('#appBody tr'),p=0,f=0;r.forEach(function(t){var s=t.querySelector('.result-sel');if(s){if(s.value==='PASS')p++;else if(s.value==='FAIL')f++;}});document.getElementById('totalCount').value=r.length;document.getElementById('passCount').value=p;document.getElementById('failCount').value=f;}
 
-// ════════════════ DATA ════════════════
 function getCellVal(t,c,tg){if(!t.cells[c])return'';var e=t.cells[c].querySelector(tg);return e?(e.value||''):'';}
 function setCellVal(t,c,tg,v){if(!t.cells[c])return;var e=t.cells[c].querySelector(tg);if(e)e.value=v||'';}
-function collectData(){var d={_v:'8.0',_format:'PAT_PROJECT',_savedAt:new Date().toISOString(),_clientName:g('clientName')||'Untitled',fields:{},appliances:[],images:{sig:images.sig,contractorSig:images.contractorSig,logo:images.logo},section:curSec};ALL_FIELDS.forEach(function(id){var el=document.getElementById(id);if(el)d.fields[id]=el.value;});document.querySelectorAll('#appBody tr').forEach(function(tr){d.appliances.push({make:getCellVal(tr,1,'input'),model:getCellVal(tr,2,'input'),serial:getCellVal(tr,3,'input'),appType:getCellVal(tr,4,'input'),voltage:getCellVal(tr,5,'select'),rating:getCellVal(tr,6,'input'),visual:getCellVal(tr,7,'select'),insulation:getCellVal(tr,8,'input'),earth:getCellVal(tr,9,'input'),plugflex:getCellVal(tr,10,'select'),result:getCellVal(tr,11,'select')});});return d;}
+function collectData(){var d={_v:'9.0',_format:'PAT_PROJECT',_savedAt:new Date().toISOString(),_clientName:g('clientName')||'Untitled',fields:{},appliances:[],images:{sig:images.sig,contractorSig:images.contractorSig,logo:images.logo},section:curSec};ALL_FIELDS.forEach(function(id){var el=document.getElementById(id);if(el)d.fields[id]=el.value;});document.querySelectorAll('#appBody tr').forEach(function(tr){d.appliances.push({make:getCellVal(tr,1,'input'),model:getCellVal(tr,2,'input'),serial:getCellVal(tr,3,'input'),appType:getCellVal(tr,4,'input'),voltage:getCellVal(tr,5,'select'),rating:getCellVal(tr,6,'input'),visual:getCellVal(tr,7,'select'),insulation:getCellVal(tr,8,'input'),earth:getCellVal(tr,9,'input'),plugflex:getCellVal(tr,10,'select'),result:getCellVal(tr,11,'select')});});return d;}
 function restoreData(d){if(!d||d._format!=='PAT_PROJECT'){showToast('Invalid','error');return false;}if(d.fields&&d.fields.propertyType){document.getElementById('propertyType').value=d.fields.propertyType;changePropertyType();}if(d.fields)ALL_FIELDS.forEach(function(id){var el=document.getElementById(id);if(el&&d.fields[id]!==undefined)el.value=d.fields[id];});if(d.fields&&d.fields.certNumberMode==='manual'){document.getElementById('certNumber').removeAttribute('readonly');document.getElementById('certNumber').classList.add('manual-cert');}document.getElementById('appBody').innerHTML='';rowCount=0;var apps=(d.appliances&&d.appliances.length)?d.appliances:[];if(!apps.length)addRow();else apps.forEach(function(a){addRow();var trs=document.querySelectorAll('#appBody tr'),tr=trs[trs.length-1];setCellVal(tr,1,'input',a.make);setCellVal(tr,2,'input',a.model);setCellVal(tr,3,'input',a.serial);setCellVal(tr,4,'input',a.appType||'');setCellVal(tr,5,'select',a.voltage);setCellVal(tr,6,'input',a.rating);setCellVal(tr,7,'select',a.visual);setCellVal(tr,8,'input',a.insulation);setCellVal(tr,9,'input',a.earth);setCellVal(tr,10,'select',a.plugflex);setCellVal(tr,11,'select',a.result);var rs=tr.cells[11]?tr.cells[11].querySelector('select'):null;if(rs)colorResult(rs);});if(d.images){if(d.images.sig)applyImage('sig',d.images.sig,'file');if(d.images.contractorSig)applyImage('contractorSig',d.images.contractorSig,'file');if(d.images.logo)applyImage('logo',d.images.logo,'file');}updateCounts();calcRetest();goTo(d.section||0);return true;}
 
-// ════════════════ EXPORT/IMPORT ════════════════
 function exportProject(fmt){try{var d=collectData(),j=JSON.stringify(d,null,2),n=(d._clientName||'P').replace(/[^a-zA-Z0-9 _-]/g,'').replace(/\s+/g,'_').substring(0,30),fn='PAT_'+n+'_'+new Date().toISOString().slice(0,10)+'.'+(fmt==='json'?'json':'patproj'),b=new Blob([j],{type:'application/octet-stream'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=fn;document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(u);},300);showToast('Saved: '+fn,'success');closeModal();}catch(e){showToast('Failed','error');}}
 function importProject(e){var f=e.target.files[0];if(!f)return;var ext=f.name.split('.').pop().toLowerCase();if(ext!=='patproj'&&ext!=='json'){showToast('Wrong type','error');e.target.value='';return;}var r=new FileReader();r.onload=function(ev){try{if(restoreData(JSON.parse(ev.target.result))){showToast('Loaded','success');closeModal();}}catch(er){showToast('Error','error');}};r.readAsText(f);e.target.value='';}
 function setupDragDrop(){var dz=document.getElementById('dropZone');if(!dz)return;dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('dragover');});dz.addEventListener('dragleave',function(){dz.classList.remove('dragover');});dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('dragover');var f=e.dataTransfer.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{if(restoreData(JSON.parse(ev.target.result))){showToast('Loaded','success');closeModal();}}catch(e){showToast('Failed','error');}};r.readAsText(f);});}
 
-// ════════════════ AUTO/QUICK SAVE ════════════════
 function setupAutoSave(){setInterval(doAutoSave,30000);document.addEventListener('input',function(){scheduleAutoSave();});document.addEventListener('change',function(){scheduleAutoSave();});}
 function scheduleAutoSave(){clearTimeout(autoSaveTimer);autoSaveTimer=setTimeout(doAutoSave,2000);}
 function doAutoSave(){try{localStorage.setItem(AUTOSAVE_KEY,JSON.stringify(collectData()));var i=document.getElementById('autosaveInd');i.classList.add('show');setTimeout(function(){i.classList.remove('show');},2000);}catch(e){}}
@@ -657,15 +447,182 @@ function openModal(){document.getElementById('projectModal').classList.add('show
 function closeModal(){document.getElementById('projectModal').classList.remove('show');}
 function handleModalClick(e){if(e.target===document.getElementById('projectModal'))closeModal();}
 
-// ════════════════ PREVIEW ════════════════
-function buildCertHTML(){updateCounts();var pt=g('propertyType')||'residential',pl=(propConfig[pt]||{label:'Residential'}).label;var ar='';document.querySelectorAll('#appBody tr').forEach(function(tr,i){var mk=getCellVal(tr,1,'input'),md=getCellVal(tr,2,'input'),se=getCellVal(tr,3,'input'),ap=getCellVal(tr,4,'input'),vo=getCellVal(tr,5,'select'),ra=getCellVal(tr,6,'input'),vi=getCellVal(tr,7,'select'),ins=getCellVal(tr,8,'input'),ea=getCellVal(tr,9,'input'),pl2=getCellVal(tr,10,'select'),rs=getCellVal(tr,11,'select'),rc=rs==='PASS'?'pass-c':rs==='FAIL'?'fail-c':'';ar+='<tr><td>'+(i+1)+'</td><td class="left">'+esc(mk)+'</td><td class="left">'+esc(md)+'</td><td>'+esc(se)+'</td><td class="left">'+esc(ap)+'</td><td>'+esc(vo)+'</td><td>'+esc(ra)+'</td><td>'+esc(vi)+'</td><td>'+esc(ins)+'</td><td>'+esc(ea)+'</td><td>'+esc(pl2)+'</td><td class="'+rc+'">'+esc(rs)+'</td></tr>';});var td=g('testDate')?new Date(g('testDate')).toLocaleDateString('en-GB'):'',rd=g('retestDate')?new Date(g('retestDate')).toLocaleDateString('en-GB'):'',cd=g('equipmentCalibDate')?new Date(g('equipmentCalibDate')).toLocaleDateString('en-GB'):'';var lH=images.logo?'<img src="'+images.logo+'" style="max-width:200px;max-height:65px;object-fit:contain">':'<div class="cert-logo-fallback">'+esc(g('tradingTitle')||'Group Tech Solutions UK')+'<small>PAT Certificate</small></div>';var sH=images.sig?'<img src="'+images.sig+'" class="cert-sig-img">':'<span style="color:#bbb;font-size:9px">No signature</span>';var cH=images.contractorSig?'<img src="'+images.contractorSig+'" class="cert-sig-img">':'<span style="color:#bbb;font-size:9px">No signature</span>';return'<div id="patCertEl"><div class="cert-prop-stamp">'+esc(pl)+' PAT</div><div class="cert-header"><div><div class="cert-title-main">PAT TESTING CERTIFICATE</div><div class="cert-title-sub">PORTABLE APPLIANCE TESTING — IET Code of Practice</div></div><div class="cert-logo-block">'+lH+'</div></div><div class="cert-bar">Cert: '+esc(g('certNumber'))+' | Test: '+td+' | Retest: '+rd+'</div><div class="cert-sec-hdr">CLIENT & EQUIPMENT</div><div class="cert-infobox"><div class="cert-infobox-col"><div class="cert-col-title">Client</div><div class="cert-inforow"><span class="lbl">Client:</span><span class="val">'+esc(g('clientName'))+'</span></div><div class="cert-inforow"><span class="lbl">Address:</span><span class="val">'+esc(g('clientAddress'))+'</span></div><div class="cert-inforow"><span class="lbl">Postcode:</span><span class="val">'+esc(g('clientPostcode'))+'</span></div><div class="cert-inforow"><span class="lbl">Phone:</span><span class="val">'+esc(g('clientPhone'))+'</span></div><div class="cert-inforow"><span class="lbl">Email:</span><span class="val">'+esc(g('clientEmail'))+'</span></div></div><div class="cert-infobox-col"><div class="cert-col-title">Equipment</div><div class="cert-inforow"><span class="lbl">Equipment:</span><span class="val">'+esc(g('testEquipment'))+'</span></div><div class="cert-inforow"><span class="lbl">Serial:</span><span class="val">'+esc(g('equipmentSerial'))+'</span></div><div class="cert-inforow"><span class="lbl">Calibrated:</span><span class="val">'+cd+'</span></div><div class="cert-inforow"><span class="lbl">Lead:</span><span class="val">'+esc(g('visualLead'))+'</span></div><div class="cert-inforow"><span class="lbl">Case:</span><span class="val">'+esc(g('visualCase'))+'</span></div><div class="cert-inforow"><span class="lbl">Fuse:</span><span class="val">'+esc(g('visualFuse'))+'</span></div></div></div><div class="cert-sec-hdr">APPLIANCE RESULTS</div><table class="cert-table"><thead><tr><th>#</th><th>Make</th><th>Model</th><th>Serial</th><th>Appliance</th><th>V</th><th>Rating</th><th>Visual</th><th>Ins</th><th>Earth</th><th>Plug</th><th>Result</th></tr></thead><tbody>'+ar+'</tbody></table><div class="cert-sec-hdr">SUMMARY</div><table class="cert-sum-table"><tr><td style="background:#f5f5f5"><strong>Total</strong></td><td style="text-align:center;font-weight:800;color:#e63946">'+g('totalCount')+'</td><td style="background:#f5f5f5"><strong>Pass</strong></td><td style="text-align:center;font-weight:700;color:#28a745">'+g('passCount')+'</td></tr><tr><td style="background:#f5f5f5"><strong>Fail</strong></td><td style="text-align:center;font-weight:700;color:#dc3545">'+g('failCount')+'</td><td style="background:#f5f5f5"><strong>Retest</strong></td><td style="text-align:center">'+g('retestMonths')+'m</td></tr>'+(g('notes')?'<tr><td style="background:#f5f5f5"><strong>Notes</strong></td><td colspan="3">'+esc(g('notes'))+'</td></tr>':'')+'</table><div class="cert-sec-hdr">CONTRACTOR & TESTER</div><div class="cert-infobox"><div class="cert-infobox-col"><div class="cert-col-title">Contractor</div><div class="cert-inforow"><span class="lbl">Name:</span><span class="val">'+esc(g('contractorPersonName'))+'</span></div><div class="cert-inforow"><span class="lbl">Company:</span><span class="val">'+esc(g('tradingTitle'))+'</span></div><div class="cert-inforow"><span class="lbl">Address:</span><span class="val">'+esc(g('companyAddress'))+'</span></div><div class="cert-inforow"><span class="lbl">Postcode:</span><span class="val">'+esc(g('companyPostcode'))+'</span></div><div class="cert-sig-box" style="margin-top:8px"><div class="cert-sig-label">Contractor Sig:</div>'+cH+'</div></div><div class="cert-infobox-col"><div class="cert-col-title">Tester</div><div class="cert-inforow"><span class="lbl">Name:</span><span class="val">'+esc(g('testerName'))+'</span></div><div class="cert-inforow"><span class="lbl">Company:</span><span class="val">'+esc(g('testerCompany'))+'</span></div><div class="cert-inforow"><span class="lbl">Address:</span><span class="val">'+esc(g('testerAddress'))+'</span></div>'+(g('certification')?'<div class="cert-inforow"><span class="lbl">Cert:</span><span class="val">'+esc(g('certification'))+'</span></div>':'')+'<div class="cert-sig-box" style="margin-top:8px"><div class="cert-sig-label">Tester Sig:</div>'+sH+'</div></div></div><div class="cert-footer"><div class="cert-footer-left"><strong>'+esc(g('tradingTitle')||'Group Tech Solutions UK')+'</strong><small>'+esc(g('companyAddress'))+'</small><small>Tested per IET Code of Practice.</small></div><div class="cert-footer-right">PAT Certificate<br>'+esc(pl)+'<br>'+esc(g('certNumber'))+'</div></div></div>';}
+// ★★★ REPLACE YOUR buildCertHTML FUNCTION WITH THIS ★★★
+function buildCertHTML(){
+    updateCounts();
+    var pt=g('propertyType')||'residential';
+    var pl=(propConfig[pt]||{label:'Residential'}).label;
+
+    // Build appliance rows
+    var ar='';
+    document.querySelectorAll('#appBody tr').forEach(function(tr,i){
+        var mk=getCellVal(tr,1,'input'),md=getCellVal(tr,2,'input'),se=getCellVal(tr,3,'input');
+        var ap=getCellVal(tr,4,'input'),vo=getCellVal(tr,5,'select'),ra=getCellVal(tr,6,'input');
+        var vi=getCellVal(tr,7,'select'),ins=getCellVal(tr,8,'input'),ea=getCellVal(tr,9,'input');
+        var pl2=getCellVal(tr,10,'select'),rs=getCellVal(tr,11,'select');
+        var rc=rs==='PASS'?'pass-c':rs==='FAIL'?'fail-c':'';
+        ar+='<tr><td>'+(i+1)+'</td><td class="left">'+esc(mk)+'</td><td class="left">'+esc(md)+'</td><td>'+esc(se)+'</td><td class="left">'+esc(ap)+'</td><td>'+esc(vo)+'</td><td>'+esc(ra)+'</td><td>'+esc(vi)+'</td><td>'+esc(ins)+'</td><td>'+esc(ea)+'</td><td>'+esc(pl2)+'</td><td class="'+rc+'">'+esc(rs)+'</td></tr>';
+    });
+
+    // Dates
+    var testDateFmt = g('testDate') ? new Date(g('testDate')).toLocaleDateString('en-GB') : '';
+    var retestDateFmt = g('retestDate') ? new Date(g('retestDate')).toLocaleDateString('en-GB') : '';
+    var calibDateFmt = g('equipmentCalibDate') ? new Date(g('equipmentCalibDate')).toLocaleDateString('en-GB') : '';
+
+    // Images
+    var logoHTML = images.logo
+        ? '<img src="'+images.logo+'" style="max-width:200px;max-height:65px;object-fit:contain">'
+        : '<div class="cert-logo-fallback">'+esc(g('tradingTitle')||'Group Tech Solutions UK')+'<small>PAT Certificate</small></div>';
+    var sigHTML = images.sig
+        ? '<img src="'+images.sig+'" class="cert-sig-img">'
+        : '<span style="color:#bbb;font-size:9px">No signature</span>';
+    var cSigHTML = images.contractorSig
+        ? '<img src="'+images.contractorSig+'" class="cert-sig-img">'
+        : '<span style="color:#bbb;font-size:9px">No signature</span>';
+
+    // ★ Get all tester values explicitly
+    var testerNameVal = g('testerName');
+    var testerCompanyVal = g('testerCompany');
+    var testerAddressVal = g('testerAddress');
+    var testerPostcodeVal = g('testerPostcode');
+    var certificationVal = g('certification');
+    var testerIdVal = g('testerId');
+
+    // ★ Get all contractor values
+    var contractorNameVal = g('contractorPersonName');
+    var companyNameVal = g('tradingTitle');
+    var companyAddressVal = g('companyAddress');
+    var companyPostcodeVal = g('companyPostcode');
+    var companyPhoneVal = g('companyPhone');
+    var companyEmailVal = g('companyEmail');
+
+    // Build full HTML
+    var html = '';
+    html += '<div id="patCertEl">';
+
+    // Header
+    html += '<div class="cert-prop-stamp">'+esc(pl)+' PAT Certificate</div>';
+    html += '<div class="cert-header">';
+    html += '<div><div class="cert-title-main">PAT TESTING CERTIFICATE</div>';
+    html += '<div class="cert-title-sub">PORTABLE APPLIANCE TESTING — IET Code of Practice</div></div>';
+    html += '<div class="cert-logo-block">'+logoHTML+'</div>';
+    html += '</div>';
+
+    // Cert bar
+    html += '<div class="cert-bar">Cert No: '+esc(g('certNumber'))+' &nbsp;|&nbsp; Test Date: '+testDateFmt+' &nbsp;|&nbsp; Retest Due: '+retestDateFmt+'</div>';
+
+    // Client & Equipment
+    html += '<div class="cert-sec-hdr">CLIENT &amp; EQUIPMENT INFORMATION</div>';
+    html += '<div class="cert-infobox">';
+    // Client column
+    html += '<div class="cert-infobox-col">';
+    html += '<div class="cert-col-title">Client / Site</div>';
+    html += '<div class="cert-inforow"><span class="lbl">Client:</span><span class="val">'+esc(g('clientName'))+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Address:</span><span class="val">'+esc(g('clientAddress'))+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Postcode:</span><span class="val">'+esc(g('clientPostcode'))+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Phone:</span><span class="val">'+esc(g('clientPhone'))+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Email:</span><span class="val">'+esc(g('clientEmail'))+'</span></div>';
+    html += '</div>';
+    // Equipment column
+    html += '<div class="cert-infobox-col">';
+    html += '<div class="cert-col-title">Test Equipment</div>';
+    html += '<div class="cert-inforow"><span class="lbl">Equipment:</span><span class="val">'+esc(g('testEquipment'))+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Serial No:</span><span class="val">'+esc(g('equipmentSerial'))+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Calibrated:</span><span class="val">'+calibDateFmt+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Visual Lead:</span><span class="val">'+esc(g('visualLead'))+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Visual Case:</span><span class="val">'+esc(g('visualCase'))+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Visual Fuse:</span><span class="val">'+esc(g('visualFuse'))+'</span></div>';
+    html += '</div>';
+    html += '</div>';
+
+    // Appliance table
+    html += '<div class="cert-sec-hdr">APPLIANCE TEST RESULTS</div>';
+    html += '<table class="cert-table"><thead><tr>';
+    html += '<th>#</th><th>Make</th><th>Model</th><th>Serial</th><th>Appliance</th>';
+    html += '<th>V</th><th>Rating</th><th>Visual</th><th>Ins MΩ</th><th>Earth Ω</th><th>Plug</th><th>Result</th>';
+    html += '</tr></thead><tbody>'+ar+'</tbody></table>';
+
+    // Summary
+    html += '<div class="cert-sec-hdr">TEST SUMMARY</div>';
+    html += '<table class="cert-sum-table">';
+    html += '<tr><td style="background:#f5f5f5"><strong>Total Tested</strong></td>';
+    html += '<td style="text-align:center;font-weight:800;color:#e63946">'+g('totalCount')+'</td>';
+    html += '<td style="background:#f5f5f5"><strong>Passed</strong></td>';
+    html += '<td style="text-align:center;font-weight:700;color:#28a745">'+g('passCount')+'</td></tr>';
+    html += '<tr><td style="background:#f5f5f5"><strong>Failed</strong></td>';
+    html += '<td style="text-align:center;font-weight:700;color:#dc3545">'+g('failCount')+'</td>';
+    html += '<td style="background:#f5f5f5"><strong>Retest Period</strong></td>';
+    html += '<td style="text-align:center">'+g('retestMonths')+' months</td></tr>';
+    if(g('notes')){
+        html += '<tr><td style="background:#f5f5f5"><strong>Notes</strong></td>';
+        html += '<td colspan="3">'+esc(g('notes'))+'</td></tr>';
+    }
+    html += '</table>';
+
+    // Contractor & Tester
+    html += '<div class="cert-sec-hdr">CONTRACTOR &amp; TESTER DETAILS</div>';
+    html += '<div class="cert-infobox">';
+
+    // ★ Contractor column
+    html += '<div class="cert-infobox-col">';
+    html += '<div class="cert-col-title">Contractor</div>';
+    html += '<div class="cert-inforow"><span class="lbl">Name:</span><span class="val">'+esc(contractorNameVal)+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Company:</span><span class="val">'+esc(companyNameVal)+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Address:</span><span class="val">'+esc(companyAddressVal)+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Postcode:</span><span class="val">'+esc(companyPostcodeVal)+'</span></div>';
+    if(companyPhoneVal){
+        html += '<div class="cert-inforow"><span class="lbl">Phone:</span><span class="val">'+esc(companyPhoneVal)+'</span></div>';
+    }
+    if(companyEmailVal){
+        html += '<div class="cert-inforow"><span class="lbl">Email:</span><span class="val">'+esc(companyEmailVal)+'</span></div>';
+    }
+    html += '<div class="cert-sig-box" style="margin-top:8px">';
+    html += '<div class="cert-sig-label">Contractor Signature:</div>';
+    html += cSigHTML;
+    html += '</div>';
+    html += '</div>';
+
+    // ★★★ Tester column — POSTCODE FIXED HERE ★★★
+    html += '<div class="cert-infobox-col">';
+    html += '<div class="cert-col-title">Tester</div>';
+    html += '<div class="cert-inforow"><span class="lbl">Name:</span><span class="val">'+esc(testerNameVal)+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Company:</span><span class="val">'+esc(testerCompanyVal)+'</span></div>';
+    html += '<div class="cert-inforow"><span class="lbl">Address:</span><span class="val">'+esc(testerAddressVal)+'</span></div>';
+    // ★★★ THIS IS THE POSTCODE LINE ★★★
+    html += '<div class="cert-inforow"><span class="lbl">Postcode:</span><span class="val">'+esc(testerPostcodeVal)+'</span></div>';
+    if(testerIdVal){
+        html += '<div class="cert-inforow"><span class="lbl">Tester ID:</span><span class="val">'+esc(testerIdVal)+'</span></div>';
+    }
+    if(certificationVal){
+        html += '<div class="cert-inforow"><span class="lbl">Certification:</span><span class="val">'+esc(certificationVal)+'</span></div>';
+    }
+    html += '<div class="cert-sig-box" style="margin-top:8px">';
+    html += '<div class="cert-sig-label">Tester Signature:</div>';
+    html += sigHTML;
+    html += '</div>';
+    html += '</div>';
+
+    html += '</div>'; // end cert-infobox
+
+    // Footer
+    html += '<div class="cert-footer">';
+    html += '<div class="cert-footer-left">';
+    html += '<strong>'+esc(companyNameVal||'Group Tech Solutions UK')+'</strong>';
+    html += '<small>'+esc(companyAddressVal)+(companyPostcodeVal?' · '+esc(companyPostcodeVal):'')+'</small>';
+    html += '<small>Tested per IET Code of Practice for In-Service Inspection and Testing.</small>';
+    html += '</div>';
+    html += '<div class="cert-footer-right">PAT Certificate<br>'+esc(pl)+' Property<br>'+esc(g('certNumber'))+'</div>';
+    html += '</div>';
+
+    html += '</div>'; // end patCertEl
+    return html;
+}
+
 function showPreview(){document.getElementById('certContent').innerHTML=buildCertHTML();document.getElementById('previewOverlay').classList.add('show');}
 function closePreview(){document.getElementById('previewOverlay').classList.remove('show');}
 
-// ════════════════ PDF ════════════════
 function genPDFImage(){document.getElementById('genMsg').textContent='Rendering...';document.getElementById('genOverlay').classList.add('show');document.getElementById('certContent').innerHTML=buildCertHTML();document.getElementById('previewOverlay').classList.add('show');setTimeout(function(){var el=document.getElementById('patCertEl');if(!el){document.getElementById('genOverlay').classList.remove('show');return;}html2canvas(el,{scale:2.5,useCORS:true,allowTaint:true,backgroundColor:'#fff',logging:false}).then(function(c){var id=c.toDataURL('image/jpeg',.95),j=window.jspdf.jsPDF,d=new j({orientation:'portrait',unit:'mm',format:'a4'}),pw=210,ph=297,ih=(c.height*pw)/c.width;if(ih<=ph)d.addImage(id,'JPEG',0,0,pw,ih);else{var y=0;while(y<ih){if(y>0)d.addPage();d.addImage(id,'JPEG',0,-y,pw,ih);y+=ph;}}d.save(getPdfFilename());showToast('PDF downloaded','success');}).catch(function(){showToast('Error','error');}).finally(function(){document.getElementById('genOverlay').classList.remove('show');});},300);}
 
-// ════════════════ RESET ════════════════
 function resetForm(){if(!confirm('Reset all?'))return;ALL_FIELDS.forEach(function(id){var el=document.getElementById(id);if(!el)return;if(el.tagName==='SELECT')el.selectedIndex=0;else el.value='';});document.getElementById('contractorPersonName').value='HASSAN ADAM';document.getElementById('tradingTitle').value='Group Tech Solutions UK';document.getElementById('companyAddress').value='Unit 16, Office 2, Midas Business Centre, Wantz Road, Dagenham';document.getElementById('companyPostcode').value='RM10 8PS';document.getElementById('testerName').value='Sajid';document.getElementById('testerCompany').value='FRA PRO';document.getElementById('testerAddress').value='127 Baron Road, Dagenham, Essex, United Kingdom';document.getElementById('testerPostcode').value='RM8 1TX';document.getElementById('certNumberMode').value='auto';toggleCertMode();document.getElementById('appBody').innerHTML='';rowCount=0;addRow();removeImg('sig');removeImg('contractorSig');removeImg('logo');document.querySelectorAll('.field-error').forEach(function(e){e.classList.remove('field-error');});document.querySelectorAll('.field-error-msg.show').forEach(function(e){e.classList.remove('show');});document.querySelectorAll('.validation-banner.show').forEach(function(e){e.classList.remove('show');});document.querySelectorAll('.sidebar-item').forEach(function(e){e.classList.remove('completed','has-error');});setToday();genCertNum();if(DEFAULT_IMAGES.logo)loadImageFromURL(DEFAULT_IMAGES.logo,'logo');if(DEFAULT_IMAGES.sig)loadImageFromURL(DEFAULT_IMAGES.sig,'sig');if(DEFAULT_IMAGES.contractorSig)loadImageFromURL(DEFAULT_IMAGES.contractorSig,'contractorSig');goTo(0);showToast('Reset','info');}
 
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
