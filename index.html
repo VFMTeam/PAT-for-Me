@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAT Certificate Generator | Login</title>
+    <title>PAT Certificate Generator | Group Tech Solutions UK</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -12,34 +12,6 @@
     <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
-.login-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px}
-.login-screen.hidden{display:none}
-.login-box{background:#fff;border-radius:16px;padding:40px 36px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:center}
-.login-logo{margin-bottom:20px}
-.login-logo i{font-size:48px;color:#e63946;margin-bottom:10px;display:block}
-.login-logo h1{font-size:22px;color:#1a1a2e;font-weight:700}
-.login-logo h1 span{color:#e63946}
-.login-logo p{font-size:12px;color:#888;margin-top:4px}
-.login-form{margin-top:24px}
-.login-field{position:relative;margin-bottom:16px;text-align:left}
-.login-field label{font-size:12px;font-weight:600;color:#495057;margin-bottom:6px;display:block}
-.login-field input{width:100%;padding:12px 14px 12px 42px;border:2px solid #dee2e6;border-radius:10px;font-size:14px;font-family:'Roboto',sans-serif;transition:all .2s;background:#f8f9fa}
-.login-field input:focus{outline:none;border-color:#e63946;background:#fff;box-shadow:0 0 0 4px rgba(230,57,70,.1)}
-.login-field .field-icon{position:absolute;left:14px;bottom:14px;color:#adb5bd;font-size:16px}
-.login-field input:focus~.field-icon{color:#e63946}
-.login-error{background:#fff5f5;border:1.5px solid #dc3545;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#dc3545;display:none;text-align:left}
-.login-error.show{display:flex;align-items:center;gap:8px}
-.login-btn{width:100%;padding:14px;background:linear-gradient(135deg,#e63946,#c1121f);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Roboto',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.login-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,57,70,.4)}
-.login-remember{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;color:#666}
-.login-remember input{width:16px;height:16px;accent-color:#e63946;cursor:pointer}
-.login-footer{margin-top:20px;font-size:10px;color:#bbb}
-.login-locked{background:#fff3cd;border:1.5px solid #ffc107;border-radius:8px;padding:12px;margin-bottom:16px;font-size:12px;color:#856404;display:none;text-align:center}
-.login-locked.show{display:block}
-.btn-logout{background:linear-gradient(135deg,#dc3545,#b02a37);color:#fff}
-.session-timer{color:#ffc107;font-size:10px;display:flex;align-items:center;gap:4px}
-.app-container{display:none}
-.app-container.visible{display:block}
 .navbar{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:0 12px;min-height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 15px rgba(0,0,0,.3);position:sticky;top:0;z-index:1000;flex-wrap:wrap;gap:6px}
 .logo-text{color:#fff;font-size:14px;font-weight:600}
 .logo-text span{color:#e63946}
@@ -101,7 +73,7 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
 .combo-option{padding:10px 12px;cursor:pointer;font-size:13px}
 .combo-option:hover{background:#fff5f5;color:#e63946}
 .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.dynamic-table{width:100%;border-collapse:collapse;min-width:960px}
+.dynamic-table{width:100%;border-collapse:collapse;min-width:900px}
 .dynamic-table th{background:#e63946;color:#fff;padding:9px 6px;font-size:10px;font-weight:700;white-space:nowrap;text-align:left}
 .dynamic-table td{padding:4px 3px;border-bottom:1px solid #eee;vertical-align:middle}
 .dynamic-table td input{width:100%;padding:7px 6px;border:1.5px solid #dee2e6;border-radius:5px;font-size:12px;background:#f8f9fa;font-family:'Roboto',sans-serif;min-height:34px}
@@ -250,41 +222,25 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
 .toast.info{border-left:4px solid #17a2b8}
 .prop-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:#e63946;color:#fff;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;margin-bottom:8px}
 .prop-residential .hide-residential,.prop-commercial .hide-commercial,.prop-industrial .hide-industrial,.prop-hmo .hide-hmo,.prop-landlord .hide-landlord,.prop-educational .hide-educational,.prop-healthcare .hide-healthcare,.prop-hospitality .hide-hospitality,.prop-retail .hide-retail,.prop-construction .hide-construction{display:none!important}
-@media(max-width:768px){.nav-btn span{display:none}.prop-switcher label{display:none}.main-container{flex-direction:column}.sidebar{width:100%;height:auto;position:sticky;top:60px;display:flex;overflow-x:auto;padding:4px 0;z-index:999}.sidebar-item{padding:8px 12px;font-size:11px;white-space:nowrap;border-left:none;border-bottom:3px solid transparent;flex-shrink:0}.sidebar-item:hover,.sidebar-item.active{border-left:none;border-bottom-color:#e63946}.form-area{padding:12px}.form-grid,.form-grid.three{grid-template-columns:1fr}.toast{left:10px;right:10px;bottom:10px;max-width:none}.login-box{padding:28px 24px}}
+@media(max-width:768px){.nav-btn span{display:none}.prop-switcher label{display:none}.main-container{flex-direction:column}.sidebar{width:100%;height:auto;position:sticky;top:60px;display:flex;overflow-x:auto;padding:4px 0;z-index:999}.sidebar-item{padding:8px 12px;font-size:11px;white-space:nowrap;border-left:none;border-bottom:3px solid transparent;flex-shrink:0}.sidebar-item:hover,.sidebar-item.active{border-left:none;border-bottom-color:#e63946}.form-area{padding:12px}.form-grid,.form-grid.three{grid-template-columns:1fr}.toast{left:10px;right:10px;bottom:10px;max-width:none}}
     </style>
 </head>
 <body class="prop-residential">
 
-<div class="login-screen" id="loginScreen">
-    <div class="login-box">
-        <div class="login-logo"><i class="fas fa-shield-alt"></i><h1>Group Tech <span>Solutions</span></h1><p>PAT Certificate Generator — Secure Access</p></div>
-        <div class="login-locked" id="loginLocked"><i class="fas fa-lock"></i> Locked. Try in <span id="lockTimer">30</span>s.</div>
-        <div class="login-error" id="loginError"><i class="fas fa-exclamation-circle"></i><span id="loginErrorMsg">Invalid credentials</span></div>
-        <form class="login-form" onsubmit="handleLogin(event)">
-            <div class="login-field"><label>Username</label><input type="text" id="loginUser" placeholder="Enter username" autocomplete="username" required><i class="fas fa-user field-icon"></i></div>
-            <div class="login-field"><label>Password</label><input type="password" id="loginPass" placeholder="Enter password" autocomplete="current-password" required><i class="fas fa-lock field-icon"></i></div>
-            <button type="submit" class="login-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
-            <label class="login-remember"><input type="checkbox" id="rememberMe"> Remember me for 7 days</label>
-        </form>
-        <div class="login-footer"><i class="fas fa-lock" style="font-size:8px"></i> Protected access</div>
-    </div>
-</div>
-
-<div class="app-container" id="appContainer">
 <div class="floating-dropdown" id="floatingDropdown"><div class="fd-search"><input type="text" id="fdSearchInput" placeholder="Search..." oninput="filterFD()"></div><div id="fdItemList"></div></div>
+
 <nav class="navbar">
     <div class="logo-text">Group Tech <span>Solutions</span> — PAT</div>
     <div class="nav-actions">
-        <div class="session-timer" id="sessionTimer"><i class="fas fa-clock"></i> <span id="sessionTimeLeft"></span></div>
         <div class="prop-switcher"><label>Type:</label><select id="propertyType" onchange="changePropertyType()"><option value="residential">🏠 Residential</option><option value="commercial">🏢 Commercial</option><option value="industrial">🏭 Industrial</option><option value="hmo">🏘️ HMO</option><option value="landlord">🔑 Landlord</option><option value="educational">🏫 Educational</option><option value="healthcare">🏥 Healthcare</option><option value="hospitality">🏨 Hospitality</option><option value="retail">🛍️ Retail</option><option value="construction">🚧 Construction</option></select></div>
         <div class="autosave-indicator" id="autosaveInd"><i class="fas fa-check-circle"></i> Saved</div>
         <button class="nav-btn btn-projects" onclick="openModal()"><i class="fas fa-folder-open"></i> <span>Projects</span></button>
         <button class="nav-btn btn-reset" onclick="resetForm()"><i class="fas fa-undo"></i> <span>Reset</span></button>
         <button class="nav-btn btn-preview" onclick="showPreview()"><i class="fas fa-eye"></i> <span>Preview</span></button>
         <button class="nav-btn btn-generate-img" onclick="genPDFImage()"><i class="fas fa-file-image"></i> <span>PDF</span></button>
-        <button class="nav-btn btn-logout" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
     </div>
 </nav>
+
 <div class="main-container">
 <aside class="sidebar">
     <div class="sidebar-item active" data-idx="0" onclick="goTo(0)"><span class="step-num">1</span> Client</div>
@@ -296,6 +252,7 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
 </aside>
 <main class="form-area">
 
+<!-- SEC 0: CLIENT (no phone/email) -->
 <div class="form-section active" id="sec-0">
     <div class="form-header"><div><div class="prop-badge"><i class="fas fa-home"></i><span id="propBadgeText">Residential</span></div><h2><i class="fas fa-user-tie" style="color:#e63946"></i> Client</h2></div><div class="step-indicator">1/6</div></div>
     <div class="validation-banner" id="vb-0"><h4><i class="fas fa-exclamation-triangle"></i> Fix:</h4><ul id="vl-0"></ul></div>
@@ -322,6 +279,7 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
     <div class="form-navigation"><button class="nav-prev" disabled><i class="fas fa-arrow-left"></i></button><div class="progress-info">1/6</div><button class="nav-next" onclick="tryNext(1)">Next <i class="fas fa-arrow-right"></i></button></div>
 </div>
 
+<!-- SEC 1: CONTRACTOR -->
 <div class="form-section" id="sec-1">
     <div class="form-header"><h2><i class="fas fa-building" style="color:#e63946"></i> Contractor</h2><div class="step-indicator">2/6</div></div>
     <div class="validation-banner" id="vb-1"><h4><i class="fas fa-exclamation-triangle"></i> Fix:</h4><ul id="vl-1"></ul></div>
@@ -342,37 +300,35 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
     <div class="form-navigation"><button class="nav-prev" onclick="goTo(0)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">2/6</div><button class="nav-next" onclick="tryNext(2)">Next <i class="fas fa-arrow-right"></i></button></div>
 </div>
 
-<!-- SEC 2: APPLIANCES — Column order: #, Tested With, Make, Model, Serial, Appliance, V, Rating, Ins, Earth, Plug, Visual, Result, X -->
+<!-- SEC 2: APPLIANCES — Tested With, Visual after Plug -->
 <div class="form-section" id="sec-2">
     <div class="form-header"><h2><i class="fas fa-plug" style="color:#e63946"></i> Appliances</h2><div class="step-indicator">3/6</div></div>
     <div class="form-card"><div class="form-card-title"><i class="fas fa-list-alt"></i> Appliance Test Results</div>
-        <div class="auto-count-banner"><i class="fas fa-info-circle"></i> Pick <strong>Make</strong> first → then <strong>Model</strong> shows only that company's models. All dropdowns include N/A.</div>
+        <div class="auto-count-banner"><i class="fas fa-info-circle"></i> <strong>Tested With</strong> = test device. Pick from dropdown or type. Visual is after Plug/Flex.</div>
         <div class="table-scroll">
-            <table class="dynamic-table">
-                <thead><tr>
-                    <th style="width:28px">#</th>
-                    <th style="min-width:100px">Tested With</th>
-                    <th style="min-width:90px">Make</th>
-                    <th style="min-width:100px">Model</th>
-                    <th style="min-width:70px">Serial</th>
-                    <th style="min-width:90px">Appliance</th>
-                    <th style="min-width:55px">Voltage</th>
-                    <th style="min-width:50px">Rating</th>
-                    <th style="min-width:50px">Ins MΩ</th>
-                    <th style="min-width:50px">Earth Ω</th>
-                    <th style="min-width:60px">Plug/Flex</th>
-                    <th style="min-width:60px">Visual</th>
-                    <th style="min-width:60px">Result</th>
-                    <th style="width:30px"></th>
-                </tr></thead>
-                <tbody id="appBody"></tbody>
-            </table>
+            <table class="dynamic-table"><thead><tr>
+                <th style="width:28px">#</th>
+                <th style="min-width:100px">Tested With</th>
+                <th style="min-width:90px">Make</th>
+                <th style="min-width:90px">Model</th>
+                <th style="min-width:70px">Serial</th>
+                <th style="min-width:90px">Appliance</th>
+                <th style="min-width:55px">Voltage</th>
+                <th style="min-width:50px">Rating</th>
+                <th style="min-width:50px">Ins MΩ</th>
+                <th style="min-width:50px">Earth Ω</th>
+                <th style="min-width:60px">Plug/Flex</th>
+                <th style="min-width:60px">Visual</th>
+                <th style="min-width:60px">Result</th>
+                <th style="width:30px"></th>
+            </tr></thead><tbody id="appBody"></tbody></table>
         </div>
         <button class="btn-add-row" onclick="addRow()"><i class="fas fa-plus-circle"></i> Add Appliance</button>
     </div>
     <div class="form-navigation"><button class="nav-prev" onclick="goTo(1)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">3/6</div><button class="nav-next" onclick="tryNext(3)">Next <i class="fas fa-arrow-right"></i></button></div>
 </div>
 
+<!-- SEC 3: SUMMARY -->
 <div class="form-section" id="sec-3">
     <div class="form-header"><h2><i class="fas fa-clipboard-check" style="color:#e63946"></i> Summary</h2><div class="step-indicator">4/6</div></div>
     <div class="form-card"><div class="form-card-title"><i class="fas fa-calculator"></i> Counts</div><div class="form-grid three">
@@ -384,6 +340,7 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
     <div class="form-navigation"><button class="nav-prev" onclick="goTo(2)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">4/6</div><button class="nav-next" onclick="tryNext(4)">Next <i class="fas fa-arrow-right"></i></button></div>
 </div>
 
+<!-- SEC 4: TESTER -->
 <div class="form-section" id="sec-4">
     <div class="form-header"><h2><i class="fas fa-user-shield" style="color:#e63946"></i> Tester</h2><div class="step-indicator">5/6</div></div>
     <div class="validation-banner" id="vb-4"><h4><i class="fas fa-exclamation-triangle"></i> Fix:</h4><ul id="vl-4"></ul></div>
@@ -403,6 +360,7 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
     <div class="form-navigation"><button class="nav-prev" onclick="goTo(3)"><i class="fas fa-arrow-left"></i></button><div class="progress-info">5/6</div><button class="nav-next" onclick="tryNext(5)">Next <i class="fas fa-arrow-right"></i></button></div>
 </div>
 
+<!-- SEC 5: LOGO -->
 <div class="form-section" id="sec-5">
     <div class="form-header"><h2><i class="fas fa-image" style="color:#e63946"></i> Logo</h2><div class="step-indicator">6/6</div></div>
     <div class="form-card"><div class="form-card-title"><i class="fas fa-image"></i> Logo (optional)</div><div class="form-group">
@@ -413,76 +371,83 @@ body{font-family:'Roboto',sans-serif;background:#f0f2f5;color:#333}
 </div>
 
 </main></div>
+
+<!-- Preview -->
 <div class="preview-overlay" id="previewOverlay"><div class="preview-container"><div class="preview-toolbar"><div class="preview-toolbar-title"><i class="fas fa-certificate" style="color:#e63946"></i> Preview</div><div class="preview-toolbar-actions"><button class="nav-btn btn-generate-img" onclick="genPDFImage()"><i class="fas fa-file-image"></i> PDF</button><button class="nav-btn btn-reset" onclick="closePreview()"><i class="fas fa-times"></i> Close</button></div></div><div id="certContent"></div></div></div>
-<div class="modal-overlay" id="projectModal" onclick="handleModalClick(event)"><div class="modal-box"><div class="modal-header"><h3><i class="fas fa-folder-open"></i> Projects</h3><button class="modal-close" onclick="closeModal()">&times;</button></div><div class="modal-body"><div class="modal-section"><div class="modal-section-title"><i class="fas fa-download"></i> Export</div><button class="modal-btn mbtn-export" onclick="exportProject('patproj')"><i class="fas fa-file-export"></i> .patproj</button><button class="modal-btn mbtn-export-json" onclick="exportProject('json')"><i class="fas fa-code"></i> .json</button></div><div class="modal-divider"></div><div class="modal-section"><div class="modal-section-title"><i class="fas fa-upload"></i> Import</div><div class="drop-zone" id="dropZone" onclick="document.getElementById('importFileInput').click()"><i class="fas fa-cloud-upload-alt"></i><p><strong>Click</strong> or drag</p><span class="supp">.patproj · .json</span></div><input type="file" id="importFileInput" class="hidden-file" accept=".patproj,.json" onchange="importProject(event)"></div><div class="modal-divider"></div><div class="modal-section"><div class="modal-section-title"><i class="fas fa-bookmark"></i> Quick Save</div><button class="modal-btn mbtn-quick-save" onclick="quickSave()"><i class="fas fa-save"></i> Save</button></div><div class="modal-divider"></div><div class="modal-section"><div class="modal-section-title"><i class="fas fa-history"></i> Auto-Save</div><div id="autosaveStatusBox"></div><button class="modal-btn mbtn-restore" onclick="restoreAutoSave()"><i class="fas fa-redo-alt"></i> Restore</button><button class="modal-btn mbtn-danger" style="margin-top:6px" onclick="clearAutoSave()"><i class="fas fa-trash-alt"></i> Clear</button></div><div class="modal-divider"></div><div class="modal-section"><div class="modal-section-title"><i class="fas fa-clock"></i> Saves</div><div id="recentSavesList"></div></div></div></div></div>
-</div>
+
+<!-- Project Modal -->
+<div class="modal-overlay" id="projectModal" onclick="handleModalClick(event)"><div class="modal-box"><div class="modal-header"><h3><i class="fas fa-folder-open"></i> Projects</h3><button class="modal-close" onclick="closeModal()">&times;</button></div><div class="modal-body">
+    <div class="modal-section"><div class="modal-section-title"><i class="fas fa-download"></i> Export</div><button class="modal-btn mbtn-export" onclick="exportProject('patproj')"><i class="fas fa-file-export"></i> .patproj</button><button class="modal-btn mbtn-export-json" onclick="exportProject('json')"><i class="fas fa-code"></i> .json</button></div><div class="modal-divider"></div>
+    <div class="modal-section"><div class="modal-section-title"><i class="fas fa-upload"></i> Import</div><div class="drop-zone" id="dropZone" onclick="document.getElementById('importFileInput').click()"><i class="fas fa-cloud-upload-alt"></i><p><strong>Click</strong> or drag</p><span class="supp">.patproj · .json</span></div><input type="file" id="importFileInput" class="hidden-file" accept=".patproj,.json" onchange="importProject(event)"></div><div class="modal-divider"></div>
+    <div class="modal-section"><div class="modal-section-title"><i class="fas fa-bookmark"></i> Quick Save</div><button class="modal-btn mbtn-quick-save" onclick="quickSave()"><i class="fas fa-save"></i> Save</button></div><div class="modal-divider"></div>
+    <div class="modal-section"><div class="modal-section-title"><i class="fas fa-history"></i> Auto-Save</div><div id="autosaveStatusBox"></div><button class="modal-btn mbtn-restore" onclick="restoreAutoSave()"><i class="fas fa-redo-alt"></i> Restore</button><button class="modal-btn mbtn-danger" style="margin-top:6px" onclick="clearAutoSave()"><i class="fas fa-trash-alt"></i> Clear</button></div><div class="modal-divider"></div>
+    <div class="modal-section"><div class="modal-section-title"><i class="fas fa-clock"></i> Saves</div><div id="recentSavesList"></div></div>
+</div></div></div>
+
 <div class="generating-overlay" id="genOverlay"><div class="generating-box"><i class="fas fa-cog spinner"></i><p id="genMsg">Generating...</p></div></div>
 <div class="toast" id="toast"><i id="toastIcon" class="fas fa-check-circle"></i><span id="toastMsg"></span></div>
 
 <script>
-var AUTH_USERS=[{username:'admin',password:'RaKiB2811@'}];
-var SESSION_HOURS=8,MAX_ATTEMPTS=5,LOCK_SECONDS=60;
-var DEFAULT_IMAGES={logo:'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/cl.jpeg',sig:'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/sajid.png',contractorSig:'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/sh.jpeg'};
+var DEFAULT_IMAGES={
+    logo:'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/cl.jpeg',
+    sig:'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/sajid.png',
+    contractorSig:'https://raw.githubusercontent.com/VFMTeam/PAT-for-Me/main/sh.jpeg'
+};
 
-var TESTED_WITH_OPTIONS=['Seaward PAT Guard','Seaward PrimeTest 350','Megger PAT420','Megger PAT450','Megger PAT320','Fluke 6500-2','Fluke 6200-2','Kewtech KT74','Kewtech KT71','Martindale HPAT600','Martindale HPAT500','Metrel MI 3360','Robin SmartPAT 5500','Dianelec 9070+'];
+var TESTED_WITH_OPTIONS=['Seaward PAT Guard','Seaward PrimeTest 350','Seaward PrimeTest 250+','Megger PAT450','Megger PAT420','Megger PAT320','Megger PAT150','Fluke 6500-2','Fluke 6200-2','Kewtech KT74','Kewtech KT71','Kewtech KT65DL','Martindale HPAT600','Martindale HPAT500','Martindale HPAT400','Metrel MI 3360','Metrel MI 3309','Robin SmartPAT 5500','Dianelec 9070+','Apollo 600','Apollo 500','TnP 500+'];
 
-// ★★★ FULL MAKE → MODEL DATABASE (350+ models, 29 brands) ★★★
 var MAKE_MODELS={
 'AEG':['L7FEE965R Washer','L8FEC966CA Washer','T7DEE835R Dryer','T8DEC946R Dryer','FSE73727P DW','FFB53937ZW DW','BPK748380M Oven','BES351010M Oven','KKK884500M Coffee','CX7-2-45AN Vacuum','RCB736E5MX Fridge','IKE84441XB Hob','KME768080M Microwave'],
 'Ariston':['NLLCD1047 Washer','AQD1072D Washer','FT M11 82Y Dryer','LFC3C33WF DW','FA4S442BH Oven','MWA222AX Microwave','ENTM18210 Fridge','BA3124FI Hob'],
-'Beko':['WTL94151W Washer','WMB71233 Washer','DTLCE80051W Dryer','DFN16420W DW','DIN15C20 DW','CFG3582DW Fridge','CCFM3571W Fridge','BBIF16300X Oven','MOC20100S Microwave','TAM4321W Toaster','WKM4321W Kettle','EDC633W Cooker','VCS5135AW Vacuum'],
-'Bosch':['WAN28281GB Washer','WAX32GH4GB Washer','WTH85223GB Dryer','WQG24509GB Dryer','SMV4HAX40G DW','SMS4HVW33E DW','KGN39VWEAG Fridge','HBA5780S6B Oven','HBS534BS0B Oven','BEL554MS0B Microwave','TAS6502GB Tassimo','TAT6A913GB Toaster','TWK7S05GB Kettle','TDA3024010 Iron','BCH86SILGB Vacuum','PKP875FP1E Hob','PSR1800 Drill','GSR18V-28 Drill'],
-'Breville':['VKT147 Flow Kettle','VKJ142 Impressions Kettle','VKT227 HotCup','VTR002 Mostra Toaster','VTT476 Impressions Toaster','VBL120 Blend Active','VBL241 Blend Active Pro','VCF108 CoffeeHouse','VCF146 PrimaLatte III','VIN439 HeatSoft Iron','VST041 Sandwich Maker','VDF126 Halo Fryer'],
-'Bush':['WMDF612W Washer','WMDFX612W Washer','TDV6W Dryer','DW12LSLS DW','BFFF60W Fridge','B60SCRS Cooker','BPOGL20 Oven','B17MW Microwave'],
-'Candy':['CS149TWME Washer','RO16106DWMCE Washer','CSEV9DF Dryer','BQDH7A1TE DW','CF 5T620EFK Fridge','CMXG25DCS Microwave','FCS100X Oven','CI642CTT Hob'],
-"De'Longhi":['ECAM290.61 Magnifica','ECAM370.95 Dinamica','EN750.MB Lattissima','TRRS0715E Dragon Heater','F28533 Roto Fryer','KBOV2001 Icona Kettle','CTOV2003 Icona Toaster','PAC EX100 Pinguino AC','KBOT3001 Argento Kettle','MultiFry FH1394','HSX3320FTS Heater'],
-'Dyson':['V15 Detect Absolute','V12 Detect Slim','V11 Absolute','V10 Cyclone','V8 Animal','V7 Motorhead','Digital Slim','Ball Animal 2','Big Ball Animal','Pure Cool TP07','Pure Hot+Cool HP07','Hot+Cool AM09','Airwrap Complete','Supersonic HD15','Corrale HS07','Pure Humidify PH04'],
-'Electrolux':['EW6F4923EB Washer','EW7F3946LB Washer','EW8H4960IB Dryer','EEM48300L DW','LNT7ME46M2 Fridge','KODDP71X Oven','EHH6540FOK Hob','EMS30400OX Microwave','EEWA7100 Kettle'],
+'Beko':['WTL94151W Washer','Pro Smart WMB71233','DTLCE80051W Dryer','DFN16420W DW','DIN15C20 DW','CFG3582DW Fridge','BBIF16300X Oven','MOC20100S Microwave','TAM4321W Toaster','WKM4321W Kettle','EDC633W Cooker','VCS5135AW Vacuum'],
+'Bosch':['WAN28281GB Serie 4 Washer','WAX32GH4GB Serie 8 Washer','WTH85223GB Serie 4 Dryer','SMV4HAX40G Serie 4 DW','KGN39VWEAG Serie 4 Fridge','HBA5780S6B Serie 6 Oven','BEL554MS0B Microwave','TAS6502GB Tassimo','TAT6A913GB Toaster','TWK7S05GB Kettle','TDA3024010 Iron','BCH86SILGB Athlet Vacuum','PKP875FP1E Hob','PSR1800 Drill','GSR18V-28 Drill'],
+'Breville':['VKT147 Flow Kettle','VKJ142 Impressions Kettle','VTR002 Mostra Toaster','VTT476 Impressions Toaster','VBL120 Blend Active','VCF108 CoffeeHouse','VCF146 PrimaLatte III','VIN439 HeatSoft Iron','VST041 Sandwich Maker','VDF126 Halo Fryer'],
+'Bush':['WMDF612W Washer','TDV6W Dryer','DW12LSLS DW','BFFF60W Fridge','B60SCRS Cooker','B17MW Microwave'],
+'Candy':['CS149TWME Washer','RO16106DWMCE Washer','CSEV9DF Dryer','CF 5T620EFK Fridge','CMXG25DCS Microwave','FCS100X Oven'],
+"De'Longhi":['ECAM290.61 Magnifica Evo','ECAM370.95 Dinamica Plus','EN750.MB Lattissima Pro','TRRS0715E Dragon Heater','F28533 Roto Fryer','KBOV2001 Icona Kettle','CTOV2003 Icona Toaster','PAC EX100 Pinguino AC','MultiFry FH1394','HSX3320FTS Heater'],
+'Dyson':['V15 Detect Absolute','V12 Detect Slim','V11 Absolute','V10 Cyclone','V8 Animal','V7 Motorhead','Digital Slim','Ball Animal 2','Big Ball Animal','Pure Cool TP07','Pure Hot+Cool HP07','Hot+Cool AM09','Airwrap Complete','Supersonic HD15','Corrale HS07','Pure Humidify+Cool PH04'],
+'Electrolux':['EW6F4923EB Washer','EW7F3946LB PerfectCare','EW8H4960IB Dryer','EEM48300L DW','LNT7ME46M2 Fridge','KODDP71X Oven','EHH6540FOK Hob','EMS30400OX Microwave'],
 'Grundig':['GWN49460CW Washer','GTN38250 Dryer','GNFP4630DWX DW','GKN16820FXP Fridge','GEZST47000B Oven','GMI2537X Microwave'],
-'Haier':['HW100B14979 Washer','HD90A2979 Dryer','XO3T7L0FFU DW','HTF520IP7 Fridge','HCR5919ENMP Fridge','HWO60SM5S9BH Oven','HIJ8010QES Hob'],
-'Hisense':['WFGE10141VM Washer','DHGE901 Dryer','HV672C60UK DW','RB435N4WWE Fridge','RF715N4AS1 Fridge','BSA66334AX Oven','HI6421BSTUK Hob','H25MOBS7HUK Microwave','55A6KTUK TV'],
-'Hoover':['HW610AMC H-Wash 500','H3WPS496TAM H-Wash 300','HF522BH H-Free 500','HF722AFG H-Free 700','NDEH11A2TCE H-Dry 500','HF5C7F0A H-Dish 500','HOC3T3258BI H-Oven','HHP30C011 H-Purifier','TX48ALG Telios Extra','TH31BO01 Sprint'],
-'Hotpoint':['NSWM1045CW Washer','NTM1192WK Dryer','HFC3C32FW DW','HBNF55181W Fridge','SH8A2QWR Fridge','SA2540HIX Oven','MF20GIXH Microwave','TT22EAC0 Toaster','WK30MAE0 Kettle','SI4E47BR Iron','HR619CH Hob'],
-'Indesit':['BWE91496XWUK Washer','MTWC91495WUK Washer','IWDC6125 Washer Dryer','I55TM4110WUK Fridge','DFE1B19UK DW','IFW6330IX Oven','MWI120GXUK Microwave','IDV75WUK Dryer','IS5V4KHW Cooker'],
-'Kenwood':['KVL8300S Chef Titanium','KAH647PL Chef XL','KWL90.034SI kMix','KHC29 Prospero Plus','FDM312SS MultiPro Express','FDP65750WH MultiPro','HDP304WH Triblade XL','BLX52 Blend-X Pro','SMP060 Smoothie','CK240 Scene Kettle','TTM610 Persona Toaster','KMix COX750 Coffee'],
-'LG':['F4V510SSE Washer','F4Y511WBLN Washer','FDV909WN Dryer','DF455HMS DW','GBB72MCVGN Fridge','GSXV90MCAE InstaView','OLED55C3 TV','55NANO766QA TV','27UP850 Monitor','A9KOMPLEX CordZero Vacuum','Tone Free FP9 Earbuds','S95QR Soundbar'],
-'Miele':['WED164 WCS W1 Washer','WEI865 WCS TwinDos','TEH635 WP T1 Dryer','TED455 WP T1 Dryer','G7160 SCVi DW','G5310 SCi DW','KFN4898AD Fridge','H7164BP Oven','H7260BP Oven','CM7750 Coffee','CVA7845 Coffee','Triflex HX2 Vacuum','Blizzard CX1 Vacuum','DA6890 Hood','KM7464FR Hob'],
-'Morphy Richards':['108010 Verve Kettle','100125 Evoke Kettle','100017 Accents Kettle','220034 Venture Toaster','248105 Evoke Toaster','303131 Turbo Steam Iron','303126 Accents Iron','732102 Supervac','EM820CPTF Microwave','460020 Sear and Stew','470010 Total Control Iron','460012 Slow Cooker'],
-'Panasonic':['NN-E28JBMBPQ Microwave','NN-DF386BBPQ Microwave','NN-CT56JBBPQ Microwave','NI-E510TRSM Iron','NI-W460 Iron','SD-B2510KXC Bread Maker','MC-BJ870 Vacuum','TX-50JX800 TV','TX-55LX800B TV','EH-NA98 Hair Dryer','ES-LV9Q Shaver','SR-CN108 Rice Cooker','KX-TG6812 Phone'],
-'Philips':['HD9270 Airfryer XXL','HD9280 Essential Airfryer','EP3246 Espresso 3200','EP2231 LatteGo','QP6551 OneBlade Pro','QP2520 OneBlade','HX9911 Sonicare 9900','GC4909 Azur Iron','GC3920 PerfectCare Iron','XC7042 SpeedPro Vacuum','FC9745 PowerPro Vacuum','HR2291 Blender','43PUS8108 TV','55OLED707 TV','272E Monitor'],
-'Russell Hobbs':['23912 Adventure Kettle','20460 Buckingham Kettle','24361 Inspire Kettle','24404 Bubble Kettle','25070 Eclipse Toaster','24200 Inspire Toaster','23061 Supreme Steam Iron','25090 One Temp Iron','RHMM701 Microwave','RHFM2363B Microwave','21410 Mode Coffee','23651 Luna Mixer','RHSV1601 Turbo Vac','24580 Rapid Boil Kettle'],
-'Samsung':['WW80TA046AE Washer','WW90T684DLE Washer','WW12TP84DSX Washer','DV80TA020AE Dryer','DV90T6240LN Dryer','DW60R7050FS DW','RB34C600ESA Fridge','RT38CG6624S1 Fridge','RS68A8530S9 Fridge','NV75R7676RS Oven','MC32B7382QF Microwave','VS20C9554TK Jet 90 Vacuum','VS15A6031R5 Jet 70 Vacuum','QE55S95C OLED TV','UE50CU7100 TV','UE43CU7100 TV','LS27C332GAU Monitor','Galaxy S24 Charger','HW-Q990C Soundbar'],
-'Sharp':['R270SLM Microwave','R272WM Microwave','R860SLM Microwave','R959SLMAA Microwave','YC-MS02U Microwave','YC-MG02U Microwave','50FN2EA TV','43FN2EA TV','FP-J60EUH Air Purifier','ES-NFH014CWA Washer','KD-NHH7S8GW3 Dryer'],
-'Siemens':['WG44G2040GB iQ500 Washer','WM14T790GB iQ700 Washer','WT47XMA0GB iQ700 Dryer','WT45N203GB iQ300 Dryer','SN65ZX49CE iQ500 DW','SN23HW64AG iQ300 DW','KG39NAXCF iQ500 Fridge','HB578ABS6B iQ500 Oven','HB578GBS6B iQ700 Oven','EQ.9 TI9573X9RW Coffee','EQ.6 TE651509DE Coffee','BF634LGS1B iQ700 MW','EX675LYC1E iQ700 Hob','VSZ7442S Vacuum'],
-'Tefal':['FZ722015 ActiFry','FZ773840 ActiFry Genius XL','FW501815 Easy Fry','EY5058 Easy Fry Precision','FV5718 Ultragliss Iron','FV9830 Ultimate Pure Iron','GV9071 Pro Express Iron','KO2998 Maison Kettle','KI2408 Express Kettle','TT533E Includeo Toaster','FR333040 Oleoclean Fryer','CY505E40 Cook4Me+','BL4388 Blendforce II'],
-'Whirlpool':['FFD9469BSVUK Washer','W8W946WRUK Washer','FFT M22 Dryer','FTHB M11 82 Dryer','W7F HP33 DW','WFC3C33PF DW','W7 931T Fridge','W5 821E Fridge','W7OM44S1P Oven','MWP 303 SB Microwave','GOW 6423 NB Hob'],
-'Zanussi':['ZWF01483WR Washer','ZWF945B2PW Washer','ZDH8333PZ Dryer','ZDC82B4PW Dryer','ZDF26004WA DW','ZDT26040FA DW','ZRG16605WA Fridge','ZCAN20FW1 Fridge','ZCV66050WA Cooker','ZOCNX3XR Oven','ZHT611X Hood','ZEI6840FBA Hob']
+'Haier':['HW100B14979 Washer','HD90A2979 Dryer','XO3T7L0FFU DW','HTF520IP7 Fridge','HWO60SM5S9BH Oven'],
+'Hisense':['WFGE10141VM Washer','DHGE901 Dryer','HV672C60UK DW','RB435N4WWE Fridge','BSA66334AX Oven','H25MOBS7HUK Microwave','55A6KTUK TV'],
+'Hoover':['H-Wash 500 HW610AMC','H-Free 500 HF522BH','H-Free 700 HF722AFG','H-Dry 500 NDEH11A2TCE','H-Dish 500 HF5C7F0A','H-Purifier HHP30C011','Telios Extra TX48ALG','Sprint TH31BO01'],
+'Hotpoint':['NSWM1045CW ActiveCare','NTM1192WK Dryer','HFC3C32FW DW','HBNF55181W Fridge','SA2540HIX Oven','MF20GIXH Microwave','TT22EAC0 Toaster','WK30MAE0 Kettle','HD Line Iron'],
+'Indesit':['BWE91496XWUK Innex','MTWC91495WUK My Time','IWDC6125 Washer Dryer','I55TM4110WUK Fridge','DFE1B19UK DW','IFW6330IX Oven','MWI120GXUK Microwave','IDV75WUK Dryer'],
+'Kenwood':['KVL8300S Chef Titanium XL','KWL90 kMix Mixer','KHC29 Prospero Plus','FDM312SS MultiPro Express','HDP304WH Triblade XL','BLX52 Blend-X Pro','PureJuice JMP800SI','CK240 Scene Kettle','TTM610 Persona Toaster'],
+'LG':['F4V510SSE AI DD Washer','F4Y511WBLN Washer','FDV909WN Heat Pump Dryer','DF455HMS DW','GBB72MCVGN Fridge','GSXV90MCAE InstaView','OLED55C3 TV','27UP850 Monitor','CordZero A9 Vacuum','S95QR Soundbar'],
+'Miele':['WED164 WCS W1 Washer','WEI865 TwinDos Washer','TEH635 WP T1 Dryer','G7160 SCVi AutoDos DW','KFN4898AD Fridge','H7164BP Oven','CM7750 Coffee','CVA7845 Coffee','Triflex HX2 Vacuum','Blizzard CX1 Vacuum','DA6890 Hood','KM7464FR Hob'],
+'Morphy Richards':['108010 Verve Kettle','100125 Evoke Kettle','248110 Aspect Cork Kettle','220034 Venture 4-Slice Toaster','248105 Evoke Toaster','303131 Turbo Steam Iron','732102 Supervac Cordless','EM820CPTF Microwave','460020 Sear and Stew','303126 Accents Iron'],
+'Panasonic':['NN-E28JBMBPQ Microwave','NN-DF386BBPQ Microwave','NI-E510TRSM Iron','SD-B2510KXC Bread Maker','MC-BJ870 Vacuum','TX-50JX800 TV','TX-55LX800B TV','EH-NA98 Hair Dryer','ES-LV9Q Shaver','SR-CN108 Rice Cooker','KX-TG6812 Phone'],
+'Philips':['HD9270 Airfryer XXL','HD9280 Essential Airfryer','EP3246 Espresso 3200','QP6551 OneBlade Pro','HX9911 Sonicare 9900','GC4909 Azur Iron','XC7042 SpeedPro Max','FC9745 PowerPro Expert','HR2291 Blender','43PUS8108 LED TV','55OLED707 TV'],
+'Russell Hobbs':['23912 Adventure Kettle','20460 Buckingham Kettle','24361 Inspire Kettle','25070 Eclipse Toaster','24200 Inspire Toaster','26090 Honeycomb Toaster','23061 Supreme Steam Iron','RHMM701 Microwave','RHFM2363B Microwave','21410 Mode Coffee','RHSV1601 Turbo Vac','24580 Rapid Boil Kettle'],
+'Samsung':['WW80TA046AE ecobubble','WW90T684DLE Washer','DV80TA020AE Dryer','DW60R7050FS DW','RB34C600ESA Fridge','RS68A8530S9 American Fridge','NV75R7676RS Oven','MC32B7382QF Microwave','VS20C9554TK Jet 90 Vacuum','VS15A6031R5 Jet 70 Vacuum','QE55S95C OLED TV','UE50CU7100 TV','LS27C332GAU Monitor','Galaxy S24 Charger','HW-Q990C Soundbar'],
+'Sharp':['R270SLM Microwave','R272WM Microwave','R860SLM Microwave','R959SLMAA Microwave','YC-MS02U Microwave','50FN2EA TV','43FN2EA TV','FP-J60EUH Air Purifier','ES-NFH014CWA Washer'],
+'Siemens':['WG44G2040GB iQ500 Washer','WM14T790GB iQ700 Washer','WT47XMA0GB iQ700 Dryer','SN65ZX49CE iQ500 DW','KG39NAXCF iQ500 Fridge','HB578ABS6B iQ500 Oven','EQ.9 TI9573X9RW Coffee','EQ.6 TE651509DE Coffee','BF634LGS1B iQ700 MW','EX675LYC1E iQ700 Hob'],
+'Tefal':['FZ722015 ActiFry Original','FZ773840 ActiFry Genius XL','EY5058 Easy Fry Precision','FV5718 Ultragliss Iron','FV9830 Ultimate Pure Iron','GV9071 Pro Express Iron','KO2998 Maison Kettle','TT533E Includeo Toaster','FR333040 Oleoclean Fryer','CY505E40 Cook4Me+','BL4388 Blendforce II'],
+'Whirlpool':['FFD9469BSVUK FreshCare','W8W946WRUK Supreme Care','FFT M22 9X3B Dryer','W7F HP33 DW','W7 931T MX H Fridge','W7OM44S1P Oven','MWP 303 SB Microwave','GOW 6423 NB Hob'],
+'Zanussi':['ZWF01483WR Lindo 100','ZWF945B2PW AutoAdjust','ZDH8333PZ Dryer','ZDF26004WA DW','ZRG16605WA Fridge','ZCV66050WA Cooker','ZOCNX3XR Oven','ZHT611X Hood','ZEI6840FBA Hob']
 };
 
-// ★★★ IMPORTANT: Build MAKES array from MAKE_MODELS keys ★★★
-var MAKES = Object.keys(MAKE_MODELS).sort();
-
-var APPLIANCE_TYPES=['Kettle','Toaster','Microwave','Iron','Vacuum Cleaner','Hair Dryer','Fan Heater','Electric Fan','Floor Lamp','Desk Lamp','Extension Lead','Power Strip','Charger','Laptop','Desktop Computer','Monitor','Printer','Fridge','Freezer','Washing Machine','Tumble Dryer','Dishwasher','Coffee Machine','Blender','Electric Drill','Radio','TV','Phone Charger','Heater','Air Conditioner','Projector','Scanner','Shredder','Food Processor','Angle Grinder','CCTV Camera'];
+var MAKES=Object.keys(MAKE_MODELS).sort();
+var APPLIANCE_TYPES=['Kettle','Toaster','Microwave','Iron','Vacuum Cleaner','Hair Dryer','Fan Heater','Electric Fan','Floor Lamp','Desk Lamp','Extension Lead','Power Strip','Charger','Laptop','Desktop Computer','Monitor','Printer','Fridge','Freezer','Washing Machine','Tumble Dryer','Dishwasher','Coffee Machine','Blender','Electric Drill','Radio','TV','Phone Charger','Heater','Air Conditioner','Projector','Server','Scanner','Photocopier','Shredder'];
 var propConfig={residential:{label:'Residential'},commercial:{label:'Commercial'},industrial:{label:'Industrial'},hmo:{label:'HMO'},landlord:{label:'Landlord'},educational:{label:'Educational'},healthcare:{label:'Healthcare'},hospitality:{label:'Hospitality'},retail:{label:'Retail'},construction:{label:'Construction'}};
 var images={sig:'',contractorSig:'',logo:''};
 var rowCount=0,curSec=0,autoSaveTimer=null,fdCurrentInput=null,fdCurrentList=[],fdCurrentRow=null,fdCurrentType='';
 var AUTOSAVE_KEY='pat_as_v11',QUICKSAVE_KEY='pat_qs_v11';
 var ALL_FIELDS=['propertyType','clientName','clientAddress','clientPostcode','hmoLicense','hmoTenants','tenantName','propManager','siteManager','businessHours','schoolName','headTeacher','healthcareType','cqcReg','numRooms','starRating','shopType','tradingHours','siteRef','constSiteManager','plantNumber','opsManager','certNumber','certNumberMode','testDate','retestDate','retestMonths','contractorPersonName','tradingTitle','companyAddress','companyPostcode','companyPhone','companyEmail','companyReg','vatNumber','notes','testerName','testerCompany','testerId','certification','testerAddress','testerPostcode'];
 var SECTION_REQUIRED={0:['clientName','clientAddress','testDate'],1:['contractorPersonName','tradingTitle'],2:[],3:[],4:['testerName'],5:[]};
+
 function g(id){var el=document.getElementById(id);return el?(el.value||''):'';}
 function getPdfFilename(){return'PAT_'+(g('clientName')||'Cert').replace(/[^a-zA-Z0-9]/g,'_').substring(0,20)+'_'+g('certNumber')+'.pdf';}
 
-var loginAttempts=0,sessionInterval=null,sessionExpiry=0;
-var AUTH_KEY='pat_auth_s2',LOCK_KEY='pat_auth_l2';
-function hashStr(s){var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return h.toString(36);}
-function handleLogin(e){e.preventDefault();var lockData=JSON.parse(localStorage.getItem(LOCK_KEY)||'{}');if(lockData.until&&Date.now()<lockData.until){showLocked(Math.ceil((lockData.until-Date.now())/1000));return;}var user=document.getElementById('loginUser').value.trim().toLowerCase(),pass=document.getElementById('loginPass').value;var valid=AUTH_USERS.some(function(u){return u.username.toLowerCase()===user&&u.password===pass;});if(valid){loginAttempts=0;localStorage.removeItem(LOCK_KEY);var remember=document.getElementById('rememberMe').checked;var expiry=Date.now()+(remember?7*24*60*60*1000:SESSION_HOURS*60*60*1000);localStorage.setItem(AUTH_KEY,JSON.stringify({user:user,expiry:expiry,hash:hashStr(user+expiry)}));showApp({user:user,expiry:expiry});}else{loginAttempts++;var remaining=MAX_ATTEMPTS-loginAttempts;var errEl=document.getElementById('loginError'),errMsg=document.getElementById('loginErrorMsg');errEl.classList.add('show');if(remaining<=0){localStorage.setItem(LOCK_KEY,JSON.stringify({until:Date.now()+LOCK_SECONDS*1000}));loginAttempts=0;showLocked(LOCK_SECONDS);errEl.classList.remove('show');}else{errMsg.textContent='Invalid credentials ('+remaining+' left)';}document.getElementById('loginPass').value='';}}
-function showLocked(secs){var el=document.getElementById('loginLocked'),timer=document.getElementById('lockTimer');el.classList.add('show');document.getElementById('loginBtn').disabled=true;var r=secs;timer.textContent=r;var iv=setInterval(function(){r--;timer.textContent=r;if(r<=0){clearInterval(iv);el.classList.remove('show');document.getElementById('loginBtn').disabled=false;localStorage.removeItem(LOCK_KEY);}},1000);}
-function showApp(session){document.getElementById('loginScreen').classList.add('hidden');document.getElementById('appContainer').classList.add('visible');sessionExpiry=session.expiry;updateSessionTimer();sessionInterval=setInterval(function(){if(Date.now()>=sessionExpiry){handleLogout('Session expired');return;}updateSessionTimer();},1000);initApp();}
-function updateSessionTimer(){var left=sessionExpiry-Date.now();if(left<=0){document.getElementById('sessionTimeLeft').textContent='Expired';return;}var h=Math.floor(left/3600000),m=Math.floor((left%3600000)/60000),s=Math.floor((left%60000)/1000);document.getElementById('sessionTimeLeft').textContent=(h>0?h+'h ':'')+String(m).padStart(2,'0')+'m '+String(s).padStart(2,'0')+'s';}
-function handleLogout(msg){localStorage.removeItem(AUTH_KEY);clearInterval(sessionInterval);document.getElementById('appContainer').classList.remove('visible');document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';document.getElementById('loginError').classList.remove('show');if(msg)alert(msg);}
-(function(){var ld=JSON.parse(localStorage.getItem(LOCK_KEY)||'{}');if(ld.until&&Date.now()<ld.until)showLocked(Math.ceil((ld.until-Date.now())/1000));var raw=localStorage.getItem(AUTH_KEY);if(raw){try{var s=JSON.parse(raw);if(s.expiry&&Date.now()<s.expiry&&s.hash===hashStr(s.user+s.expiry))showApp(s);}catch(e){}}})();
+document.addEventListener('DOMContentLoaded',function(){
+    setToday();genCertNum();addRow();setupAutoSave();setupDragDrop();setupFD();
+    if(DEFAULT_IMAGES.logo)loadImageFromURL(DEFAULT_IMAGES.logo,'logo');
+    if(DEFAULT_IMAGES.sig)loadImageFromURL(DEFAULT_IMAGES.sig,'sig');
+    if(DEFAULT_IMAGES.contractorSig)loadImageFromURL(DEFAULT_IMAGES.contractorSig,'contractorSig');
+});
 
-function initApp(){setToday();genCertNum();addRow();setupAutoSave();setupDragDrop();setupFD();if(DEFAULT_IMAGES.logo)loadImageFromURL(DEFAULT_IMAGES.logo,'logo');if(DEFAULT_IMAGES.sig)loadImageFromURL(DEFAULT_IMAGES.sig,'sig');if(DEFAULT_IMAGES.contractorSig)loadImageFromURL(DEFAULT_IMAGES.contractorSig,'contractorSig');}
+// Image loading
 function loadImageFromURL(url,type){if(!url)return;var img=new Image();img.crossOrigin='Anonymous';img.onload=function(){var c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;c.getContext('2d').drawImage(img,0,0);try{applyImage(type,c.toDataURL('image/png'),'url');}catch(e){}};img.onerror=function(){};img.src=url+'?t='+Date.now();}
 function toggleUrlInput(t){document.getElementById(t+'UrlInput').classList.toggle('show');}
 function loadFromUrl(t){var u=document.getElementById(t+'Url').value.trim();if(!u)return;loadImageFromURL(u,t);document.getElementById(t+'UrlInput').classList.remove('show');}
@@ -492,72 +457,24 @@ function applyImage(type,dataUrl,source){images[type]=dataUrl;var sec=document.g
 function resetToDefault(t){if(DEFAULT_IMAGES[t])loadImageFromURL(DEFAULT_IMAGES[t],t);}
 function removeImg(t){images[t]='';var s=document.getElementById(t+'Section'),p=document.getElementById(t+'Preview'),a=document.getElementById(t+'Actions');var fid=t==='sig'?'sigFile':t==='contractorSig'?'contractorSigFile':'logoFile';if(s)s.classList.remove('has-image');if(p){p.className='img-placeholder'+(t==='logo'?' logo-preview-container':'');p.onclick=function(){triggerFile(fid);};p.innerHTML='<i class="fas fa-cloud-upload-alt"></i><p>Upload or URL</p>';}a.innerHTML='<button class="img-action-btn img-btn-upload" type="button" onclick="triggerFile(\''+fid+'\')"><i class="fas fa-upload"></i> Upload</button><button class="img-action-btn img-btn-url" type="button" onclick="toggleUrlInput(\''+t+'\')"><i class="fas fa-link"></i> URL</button>';document.getElementById(t+'UrlInput').classList.remove('show');}
 
+// Validation
 function validateSection(s){var errs=[],ids=SECTION_REQUIRED[s]||[];ids.forEach(function(id){var el=document.getElementById(id);if(el)el.classList.remove('field-error');var er=document.getElementById('err-'+id);if(er)er.classList.remove('show');});ids.forEach(function(id){var el=document.getElementById(id);if(!el)return;if(!el.value.trim()){el.classList.add('field-error');var er=document.getElementById('err-'+id);if(er)er.classList.add('show');errs.push((el.getAttribute('data-req')||id)+' required');}});if(s===4&&!images.sig){errs.push('Tester Signature required');document.getElementById('sigSection').classList.add('field-error');var es=document.getElementById('err-sig');if(es)es.classList.add('show');}else if(s===4){document.getElementById('sigSection').classList.remove('field-error');var e2=document.getElementById('err-sig');if(e2)e2.classList.remove('show');}var vb=document.getElementById('vb-'+s),vl=document.getElementById('vl-'+s);if(vb&&vl){if(errs.length){vl.innerHTML=errs.map(function(e){return'<li>'+esc(e)+'</li>';}).join('');vb.classList.add('show');}else vb.classList.remove('show');}return!errs.length;}
 function tryNext(t){var c=t-1;if(validateSection(c)){var si=document.querySelector('.sidebar-item[data-idx="'+c+'"]');if(si){si.classList.add('completed');si.classList.remove('has-error');}goTo(t);}else{var si=document.querySelector('.sidebar-item[data-idx="'+c+'"]');if(si){si.classList.remove('completed');si.classList.add('has-error');}showToast('Fill required fields or N/A','error');window.scrollTo({top:0,behavior:'smooth'});}}
 document.addEventListener('input',function(e){if(e.target.classList.contains('field-error')&&e.target.value.trim()){e.target.classList.remove('field-error');var er=document.getElementById('err-'+e.target.id);if(er)er.classList.remove('show');}});
 
+// Floating dropdown
 function setupFD(){document.addEventListener('mousedown',function(e){var fd=document.getElementById('floatingDropdown');if(fd.classList.contains('open')&&!fd.contains(e.target)&&!e.target.classList.contains('tbl-combo-btn'))closeFD();document.querySelectorAll('.combo-dropdown.show').forEach(function(d){if(!d.parentElement.contains(e.target))d.classList.remove('show');});});}
 function openFD(b,l,t,r){fdCurrentInput=b.parentElement.querySelector('input');fdCurrentList=l;fdCurrentType=t;fdCurrentRow=r;var fd=document.getElementById('floatingDropdown');document.getElementById('fdSearchInput').value='';renderFDItems(l);var rc=b.getBoundingClientRect();fd.style.minWidth='220px';fd.style.maxHeight='280px';fd.style.left=Math.max(4,rc.left-80)+'px';fd.style.bottom='';fd.style.top='';if(window.innerHeight-rc.bottom<180)fd.style.bottom=(window.innerHeight-rc.top+4)+'px';else fd.style.top=(rc.bottom+4)+'px';fd.classList.add('open');setTimeout(function(){document.getElementById('fdSearchInput').focus();},40);}
 function closeFD(){document.getElementById('floatingDropdown').classList.remove('open');}
 function renderFDItems(l){var h='';l.forEach(function(i){h+='<div class="fd-item" onmousedown="pickFDItem(\''+i.replace(/'/g,"\\'")+'\')">' +i+'</div>';});h+='<div class="fd-item fd-na" onmousedown="pickFDItem(\'N/A\')">N/A</div>';document.getElementById('fdItemList').innerHTML=h;}
 function filterFD(){renderFDItems(fdCurrentList.filter(function(i){return i.toLowerCase().indexOf(document.getElementById('fdSearchInput').value.toLowerCase())!==-1;}));}
-function pickFDItem(v){
-    if(fdCurrentInput) fdCurrentInput.value=v;
-    // ★★★ When Make is picked, clear Model (cells[3]) and auto-show only that company's models ★★★
-    if(fdCurrentType==='make' && fdCurrentRow){
-        var modelInput = fdCurrentRow.cells[3] ? fdCurrentRow.cells[3].querySelector('input') : null;
-        if(modelInput && v!=='N/A') modelInput.value=''; // clear old model
-    }
-    closeFD();
-    scheduleAutoSave();
-}
-
-// ★★★ FIXED: Tested With dropdown ★★★
-function openTestedWithDrop(b){
-    openFD(b, TESTED_WITH_OPTIONS, 'testedwith', b.closest('tr'));
-}
-
-// ★★★ FIXED: Make dropdown — rebuild MAKES fresh each time ★★★
-function openMakeDrop(b){
-    MAKES = Object.keys(MAKE_MODELS).sort();
-    openFD(b, MAKES, 'make', b.closest('tr'));
-}
-
-// ★★★ FIXED: Model dropdown — cells[2] is Make (after TestedWith in cells[1]) ★★★
-function openModelDrop(b){
-    var tr = b.closest('tr');
-    // Make is in cells[2] (col index: 0=#, 1=TestedWith, 2=Make, 3=Model)
-    var makeInput = tr.cells[2] ? tr.cells[2].querySelector('input') : null;
-    var makeVal = makeInput ? makeInput.value.trim() : '';
-    var models = [];
-
-    if(makeVal && MAKE_MODELS[makeVal]){
-        // ★ Only show models from the selected company ★
-        models = MAKE_MODELS[makeVal];
-    } else if(makeVal){
-        // Try case-insensitive match
-        var found = false;
-        Object.keys(MAKE_MODELS).forEach(function(key){
-            if(key.toLowerCase() === makeVal.toLowerCase()){
-                models = MAKE_MODELS[key];
-                found = true;
-            }
-        });
-        if(!found){
-            // No match — show all
-            Object.values(MAKE_MODELS).forEach(function(m){models=models.concat(m);});
-            models=[...new Set(models)].sort();
-        }
-    } else {
-        // No make selected — show all models
-        Object.values(MAKE_MODELS).forEach(function(m){models=models.concat(m);});
-        models=[...new Set(models)].sort();
-    }
-    openFD(b, models, 'model', tr);
-}
-
+function pickFDItem(v){if(fdCurrentInput)fdCurrentInput.value=v;if(fdCurrentType==='make'&&fdCurrentRow){var m=fdCurrentRow.cells[3]?fdCurrentRow.cells[3].querySelector('input'):null;if(m&&v!=='N/A')m.value='';}closeFD();scheduleAutoSave();}
+function openTestedWithDrop(b){openFD(b,TESTED_WITH_OPTIONS,'testedwith',b.closest('tr'));}
+function openMakeDrop(b){MAKES=Object.keys(MAKE_MODELS).sort();openFD(b,MAKES,'make',b.closest('tr'));}
+function openModelDrop(b){var tr=b.closest('tr');var mi=tr.cells[2]?tr.cells[2].querySelector('input'):null;var mv=mi?mi.value.trim():'';var models=[];if(mv&&MAKE_MODELS[mv])models=MAKE_MODELS[mv];else{Object.values(MAKE_MODELS).forEach(function(m){models=models.concat(m);});models=[...new Set(models)].sort();}openFD(b,models,'model',tr);}
 function openAppDrop(b){openFD(b,APPLIANCE_TYPES,'appliance',b.closest('tr'));}
 
+// Nav
 function goTo(i){document.querySelectorAll('.form-section').forEach(function(s){s.classList.remove('active');});document.querySelectorAll('.sidebar-item').forEach(function(s){s.classList.remove('active');});document.getElementById('sec-'+i).classList.add('active');document.querySelector('.sidebar-item[data-idx="'+i+'"]').classList.add('active');curSec=i;window.scrollTo({top:0,behavior:'smooth'});}
 function changePropertyType(){document.body.className='prop-'+g('propertyType');document.getElementById('propBadgeText').textContent=(propConfig[g('propertyType')]||{label:''}).label;scheduleAutoSave();}
 function genCertNum(){document.getElementById('certNumber').value=(g('clientPostcode').replace(/\s/g,'').toUpperCase()||'PAT')+'-'+String(Math.floor(Math.random()*90000)+10000);}
@@ -568,10 +485,9 @@ function calcRetest(){var t=g('testDate');if(!t)return;var d=new Date(t);d.setMo
 function toggleCombo(id){var d=document.getElementById('dd-'+id);document.querySelectorAll('.combo-dropdown.show').forEach(function(x){x.classList.remove('show');});d.classList.toggle('show');}
 function pickCombo(id,v){document.getElementById(id).value=v;document.getElementById('dd-'+id).classList.remove('show');}
 
-// ★★★ TABLE ROW — Column map: 0=#, 1=TestedWith, 2=Make, 3=Model, 4=Serial, 5=Appliance, 6=V, 7=Rating, 8=Ins, 9=Earth, 10=Plug, 11=Visual, 12=Result, 13=Remove ★★★
+// Table: #, TestedWith, Make, Model, Serial, Appliance, V, Rating, Ins, Earth, Plug, Visual, Result, X
 function addRow(){
-    rowCount++;
-    var tr=document.createElement('tr');
+    rowCount++;var tr=document.createElement('tr');
     tr.innerHTML=
         '<td style="text-align:center;font-size:11px;font-weight:700;color:#888">'+rowCount+'</td>'+
         '<td><div class="tbl-combo-wrap"><input type="text" placeholder="Test device"><button type="button" class="tbl-combo-btn" onmousedown="event.preventDefault();openTestedWithDrop(this)">&#9660;</button></div></td>'+
@@ -587,21 +503,25 @@ function addRow(){
         '<td><select><option value="">—</option><option>PASS</option><option>FAIL</option><option>N/A</option></select></td>'+
         '<td><select class="result-sel" onchange="colorResult(this)"><option value="">—</option><option value="PASS">PASS</option><option value="FAIL">FAIL</option><option value="N/A">N/A</option></select></td>'+
         '<td><button class="btn-remove-row" type="button" onclick="removeRow(this)"><i class="fas fa-times"></i></button></td>';
-    document.getElementById('appBody').appendChild(tr);
-    updateCounts();
+    document.getElementById('appBody').appendChild(tr);updateCounts();
 }
 function removeRow(b){b.closest('tr').remove();renumber();updateCounts();scheduleAutoSave();}
 function renumber(){document.querySelectorAll('#appBody tr').forEach(function(t,i){t.cells[0].textContent=i+1;});rowCount=document.querySelectorAll('#appBody tr').length;}
 function colorResult(s){if(!s.value||s.value==='—'){s.style.color='';s.style.fontWeight='';return;}s.style.color=s.value==='PASS'?'#28a745':s.value==='FAIL'?'#dc3545':'#888';s.style.fontWeight='700';}
 function updateCounts(){var r=document.querySelectorAll('#appBody tr'),p=0,f=0;r.forEach(function(t){var s=t.querySelector('.result-sel');if(s){if(s.value==='PASS')p++;else if(s.value==='FAIL')f++;}});document.getElementById('totalCount').value=r.length;document.getElementById('passCount').value=p;document.getElementById('failCount').value=f;}
 
+// Data: cell map: 0=#,1=TestedWith,2=Make,3=Model,4=Serial,5=Appliance,6=V,7=Rating,8=Ins,9=Earth,10=Plug,11=Visual,12=Result
 function getCellVal(t,c,tg){if(!t.cells[c])return'';var e=t.cells[c].querySelector(tg);return e?(e.value||''):'';}
 function setCellVal(t,c,tg,v){if(!t.cells[c])return;var e=t.cells[c].querySelector(tg);if(e)e.value=v||'';}
 function collectData(){var d={_v:'11.0',_format:'PAT_PROJECT',_savedAt:new Date().toISOString(),_clientName:g('clientName')||'Untitled',fields:{},appliances:[],images:{sig:images.sig,contractorSig:images.contractorSig,logo:images.logo},section:curSec};ALL_FIELDS.forEach(function(id){var el=document.getElementById(id);if(el)d.fields[id]=el.value;});document.querySelectorAll('#appBody tr').forEach(function(tr){d.appliances.push({testedWith:getCellVal(tr,1,'input'),make:getCellVal(tr,2,'input'),model:getCellVal(tr,3,'input'),serial:getCellVal(tr,4,'input'),appType:getCellVal(tr,5,'input'),voltage:getCellVal(tr,6,'select'),rating:getCellVal(tr,7,'input'),insulation:getCellVal(tr,8,'input'),earth:getCellVal(tr,9,'input'),plugflex:getCellVal(tr,10,'select'),visual:getCellVal(tr,11,'select'),result:getCellVal(tr,12,'select')});});return d;}
-function restoreData(d){if(!d||d._format!=='PAT_PROJECT'){showToast('Invalid','error');return false;}if(d.fields&&d.fields.propertyType){document.getElementById('propertyType').value=d.fields.propertyType;changePropertyType();}if(d.fields)ALL_FIELDS.forEach(function(id){var el=document.getElementById(id);if(el&&d.fields[id]!==undefined)el.value=d.fields[id];});if(d.fields&&d.fields.certNumberMode==='manual'){document.getElementById('certNumber').removeAttribute('readonly');document.getElementById('certNumber').classList.add('manual-cert');}document.getElementById('appBody').innerHTML='';rowCount=0;var apps=(d.appliances&&d.appliances.length)?d.appliances:[];if(!apps.length)addRow();else apps.forEach(function(a){addRow();var trs=document.querySelectorAll('#appBody tr'),tr=trs[trs.length-1];setCellVal(tr,1,'input',a.testedWith||a.testedBy||'');setCellVal(tr,2,'input',a.make);setCellVal(tr,3,'input',a.model);setCellVal(tr,4,'input',a.serial);setCellVal(tr,5,'input',a.appType||a.appliance||'');setCellVal(tr,6,'select',a.voltage);setCellVal(tr,7,'input',a.rating);setCellVal(tr,8,'input',a.insulation);setCellVal(tr,9,'input',a.earth);setCellVal(tr,10,'select',a.plugflex);setCellVal(tr,11,'select',a.visual);setCellVal(tr,12,'select',a.result);var rs=tr.cells[12]?tr.cells[12].querySelector('select'):null;if(rs)colorResult(rs);});if(d.images){if(d.images.sig)applyImage('sig',d.images.sig,'file');if(d.images.contractorSig)applyImage('contractorSig',d.images.contractorSig,'file');if(d.images.logo)applyImage('logo',d.images.logo,'file');}updateCounts();calcRetest();goTo(d.section||0);return true;}
+function restoreData(d){if(!d||d._format!=='PAT_PROJECT'){showToast('Invalid','error');return false;}if(d.fields&&d.fields.propertyType){document.getElementById('propertyType').value=d.fields.propertyType;changePropertyType();}if(d.fields)ALL_FIELDS.forEach(function(id){var el=document.getElementById(id);if(el&&d.fields[id]!==undefined)el.value=d.fields[id];});if(d.fields&&d.fields.certNumberMode==='manual'){document.getElementById('certNumber').removeAttribute('readonly');document.getElementById('certNumber').classList.add('manual-cert');}document.getElementById('appBody').innerHTML='';rowCount=0;var apps=(d.appliances&&d.appliances.length)?d.appliances:[];if(!apps.length)addRow();else apps.forEach(function(a){addRow();var trs=document.querySelectorAll('#appBody tr'),tr=trs[trs.length-1];setCellVal(tr,1,'input',a.testedWith||a.testedBy||'');setCellVal(tr,2,'input',a.make);setCellVal(tr,3,'input',a.model);setCellVal(tr,4,'input',a.serial);setCellVal(tr,5,'input',a.appType||'');setCellVal(tr,6,'select',a.voltage);setCellVal(tr,7,'input',a.rating);setCellVal(tr,8,'input',a.insulation);setCellVal(tr,9,'input',a.earth);setCellVal(tr,10,'select',a.plugflex);setCellVal(tr,11,'select',a.visual);setCellVal(tr,12,'select',a.result);var rs=tr.cells[12]?tr.cells[12].querySelector('select'):null;if(rs)colorResult(rs);});if(d.images){if(d.images.sig)applyImage('sig',d.images.sig,'file');if(d.images.contractorSig)applyImage('contractorSig',d.images.contractorSig,'file');if(d.images.logo)applyImage('logo',d.images.logo,'file');}updateCounts();calcRetest();goTo(d.section||0);return true;}
+
+// Export/Import
 function exportProject(fmt){try{var d=collectData(),j=JSON.stringify(d,null,2),n=(d._clientName||'P').replace(/[^a-zA-Z0-9 _-]/g,'').replace(/\s+/g,'_').substring(0,30),fn='PAT_'+n+'_'+new Date().toISOString().slice(0,10)+'.'+(fmt==='json'?'json':'patproj'),b=new Blob([j],{type:'application/octet-stream'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=fn;document.body.appendChild(a);a.click();setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(u);},300);showToast('Saved: '+fn,'success');closeModal();}catch(e){showToast('Failed','error');}}
 function importProject(e){var f=e.target.files[0];if(!f)return;var ext=f.name.split('.').pop().toLowerCase();if(ext!=='patproj'&&ext!=='json'){showToast('Wrong type','error');e.target.value='';return;}var r=new FileReader();r.onload=function(ev){try{if(restoreData(JSON.parse(ev.target.result))){showToast('Loaded','success');closeModal();}}catch(er){showToast('Error','error');}};r.readAsText(f);e.target.value='';}
 function setupDragDrop(){var dz=document.getElementById('dropZone');if(!dz)return;dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('dragover');});dz.addEventListener('dragleave',function(){dz.classList.remove('dragover');});dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('dragover');var f=e.dataTransfer.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{if(restoreData(JSON.parse(ev.target.result))){showToast('Loaded','success');closeModal();}}catch(e){showToast('Failed','error');}};r.readAsText(f);});}
+
+// Auto/Quick save
 function setupAutoSave(){setInterval(doAutoSave,30000);document.addEventListener('input',function(){scheduleAutoSave();});document.addEventListener('change',function(){scheduleAutoSave();});}
 function scheduleAutoSave(){clearTimeout(autoSaveTimer);autoSaveTimer=setTimeout(doAutoSave,2000);}
 function doAutoSave(){try{localStorage.setItem(AUTOSAVE_KEY,JSON.stringify(collectData()));var i=document.getElementById('autosaveInd');i.classList.add('show');setTimeout(function(){i.classList.remove('show');},2000);}catch(e){}}
@@ -617,11 +537,15 @@ function openModal(){document.getElementById('projectModal').classList.add('show
 function closeModal(){document.getElementById('projectModal').classList.remove('show');}
 function handleModalClick(e){if(e.target===document.getElementById('projectModal'))closeModal();}
 
-// ★★★ CERTIFICATE HTML — with Tested With column, Visual after Plug, tester postcode ★★★
+// Certificate HTML
 function buildCertHTML(){
     updateCounts();
     var pt=g('propertyType')||'residential';
     var pl=(propConfig[pt]||{label:'Residential'}).label;
+    var testDateFmt=g('testDate')?new Date(g('testDate')).toLocaleDateString('en-GB'):'';
+    var retestDateFmt=g('retestDate')?new Date(g('retestDate')).toLocaleDateString('en-GB'):'';
+
+    // Appliance rows
     var ar='';
     document.querySelectorAll('#appBody tr').forEach(function(tr,i){
         var tw=getCellVal(tr,1,'input');
@@ -653,8 +577,7 @@ function buildCertHTML(){
         ar+='<td class="'+rc+'">'+esc(rs)+'</td>';
         ar+='</tr>';
     });
-    var testDateFmt=g('testDate')?new Date(g('testDate')).toLocaleDateString('en-GB'):'';
-    var retestDateFmt=g('retestDate')?new Date(g('retestDate')).toLocaleDateString('en-GB'):'';
+
     var logoHTML=images.logo?'<img src="'+images.logo+'" style="max-width:200px;max-height:65px;object-fit:contain">':'<div class="cert-logo-fallback">'+esc(g('tradingTitle')||'Group Tech Solutions UK')+'<small>PAT Certificate</small></div>';
     var sigHTML=images.sig?'<img src="'+images.sig+'" class="cert-sig-img">':'<span style="color:#bbb;font-size:9px">No signature</span>';
     var cSigHTML=images.contractorSig?'<img src="'+images.contractorSig+'" class="cert-sig-img">':'<span style="color:#bbb;font-size:9px">No signature</span>';
@@ -664,25 +587,32 @@ function buildCertHTML(){
     html+='<div class="cert-prop-stamp">'+esc(pl)+' PAT Certificate</div>';
     html+='<div class="cert-header"><div><div class="cert-title-main">PAT TESTING CERTIFICATE</div><div class="cert-title-sub">PORTABLE APPLIANCE TESTING — IET Code of Practice</div></div><div class="cert-logo-block">'+logoHTML+'</div></div>';
     html+='<div class="cert-bar">Cert No: '+esc(g('certNumber'))+' &nbsp;|&nbsp; Test Date: '+testDateFmt+' &nbsp;|&nbsp; Retest Due: '+retestDateFmt+'</div>';
+
+    // Client & Test Details — balanced 3 rows each
     html+='<div class="cert-sec-hdr">CLIENT INFORMATION</div>';
-    html+='<div class="cert-infobox"><div class="cert-infobox-col">';
+    html+='<div class="cert-infobox">';
+    html+='<div class="cert-infobox-col">';
     html+='<div class="cert-col-title">Client / Site</div>';
     html+='<div class="cert-inforow"><span class="lbl">Client:</span><span class="val">'+esc(g('clientName'))+'</span></div>';
     html+='<div class="cert-inforow"><span class="lbl">Address:</span><span class="val">'+esc(g('clientAddress'))+'</span></div>';
     html+='<div class="cert-inforow"><span class="lbl">Postcode:</span><span class="val">'+esc(g('clientPostcode'))+'</span></div>';
-    
-    html+='</div><div class="cert-infobox-col">';
+    html+='</div>';
+    html+='<div class="cert-infobox-col">';
     html+='<div class="cert-col-title">Test Details</div>';
     html+='<div class="cert-inforow"><span class="lbl">Test Date:</span><span class="val">'+testDateFmt+'</span></div>';
     html+='<div class="cert-inforow"><span class="lbl">Retest Due:</span><span class="val">'+retestDateFmt+'</span></div>';
     html+='<div class="cert-inforow"><span class="lbl">Retest Period:</span><span class="val">'+g('retestMonths')+' months</span></div>';
-    html+='<div class="cert-inforow"><span class="lbl">Property Type:</span><span class="val">'+esc(pl)+'</span></div>';
-    html+='</div></div>';
+    html+='</div>';
+    html+='</div>';
+
+    // Appliance table
     html+='<div class="cert-sec-hdr">APPLIANCE TEST RESULTS</div>';
     html+='<table class="cert-table"><thead><tr>';
     html+='<th>#</th><th>Tested With</th><th>Make</th><th>Model</th><th>Serial</th><th>Appliance</th>';
     html+='<th>V</th><th>Rating</th><th>Ins MΩ</th><th>Earth Ω</th><th>Plug</th><th>Visual</th><th>Result</th>';
     html+='</tr></thead><tbody>'+ar+'</tbody></table>';
+
+    // Summary
     html+='<div class="cert-sec-hdr">TEST SUMMARY</div>';
     html+='<table class="cert-sum-table">';
     html+='<tr><td style="background:#f5f5f5"><strong>Total Tested</strong></td><td style="text-align:center;font-weight:800;color:#e63946">'+g('totalCount')+'</td>';
@@ -691,6 +621,8 @@ function buildCertHTML(){
     html+='<td style="background:#f5f5f5"><strong>Retest Period</strong></td><td style="text-align:center">'+g('retestMonths')+' months</td></tr>';
     if(g('notes')){html+='<tr><td style="background:#f5f5f5"><strong>Notes</strong></td><td colspan="3">'+esc(g('notes'))+'</td></tr>';}
     html+='</table>';
+
+    // Contractor & Tester
     html+='<div class="cert-sec-hdr">CONTRACTOR &amp; TESTER DETAILS</div>';
     html+='<div class="cert-infobox">';
     html+='<div class="cert-infobox-col">';
@@ -712,19 +644,27 @@ function buildCertHTML(){
     if(g('testerId')){html+='<div class="cert-inforow"><span class="lbl">Tester ID:</span><span class="val">'+esc(g('testerId'))+'</span></div>';}
     if(g('certification')){html+='<div class="cert-inforow"><span class="lbl">Certification:</span><span class="val">'+esc(g('certification'))+'</span></div>';}
     html+='<div class="cert-sig-box" style="margin-top:8px"><div class="cert-sig-label">Tester Signature:</div>'+sigHTML+'</div>';
-    html+='</div></div>';
-    html+='<div class="cert-footer"><div class="cert-footer-left"><strong>'+esc(g('tradingTitle')||'Group Tech Solutions UK')+'</strong>';
+    html+='</div>';
+    html+='</div>';
+
+    // Footer
+    html+='<div class="cert-footer">';
+    html+='<div class="cert-footer-left"><strong>'+esc(g('tradingTitle')||'Group Tech Solutions UK')+'</strong>';
     html+='<small>'+esc(g('companyAddress'))+(g('companyPostcode')?' · '+esc(g('companyPostcode')):'')+'</small>';
     html+='<small>Tested per IET Code of Practice for In-Service Inspection and Testing.</small></div>';
-    html+='<div class="cert-footer-right">PAT Certificate<br>'+esc(pl)+' Property<br>'+esc(g('certNumber'))+'</div></div>';
+    html+='<div class="cert-footer-right">PAT Certificate<br>'+esc(pl)+' Property<br>'+esc(g('certNumber'))+'</div>';
+    html+='</div>';
     html+='</div>';
     return html;
 }
 
 function showPreview(){document.getElementById('certContent').innerHTML=buildCertHTML();document.getElementById('previewOverlay').classList.add('show');}
 function closePreview(){document.getElementById('previewOverlay').classList.remove('show');}
+
 function genPDFImage(){document.getElementById('genMsg').textContent='Rendering...';document.getElementById('genOverlay').classList.add('show');document.getElementById('certContent').innerHTML=buildCertHTML();document.getElementById('previewOverlay').classList.add('show');setTimeout(function(){var el=document.getElementById('patCertEl');if(!el){document.getElementById('genOverlay').classList.remove('show');return;}html2canvas(el,{scale:2.5,useCORS:true,allowTaint:true,backgroundColor:'#fff',logging:false}).then(function(c){var id=c.toDataURL('image/jpeg',.95),j=window.jspdf.jsPDF,d=new j({orientation:'portrait',unit:'mm',format:'a4'}),pw=210,ph=297,ih=(c.height*pw)/c.width;if(ih<=ph)d.addImage(id,'JPEG',0,0,pw,ih);else{var y=0;while(y<ih){if(y>0)d.addPage();d.addImage(id,'JPEG',0,-y,pw,ih);y+=ph;}}d.save(getPdfFilename());showToast('PDF downloaded','success');}).catch(function(){showToast('Error','error');}).finally(function(){document.getElementById('genOverlay').classList.remove('show');});},300);}
+
 function resetForm(){if(!confirm('Reset all?'))return;ALL_FIELDS.forEach(function(id){var el=document.getElementById(id);if(!el)return;if(el.tagName==='SELECT')el.selectedIndex=0;else el.value='';});document.getElementById('contractorPersonName').value='HASSAN ADAM';document.getElementById('tradingTitle').value='Group Tech Solutions UK';document.getElementById('companyAddress').value='Unit 16, Office 2, Midas Business Centre, Wantz Road, Dagenham';document.getElementById('companyPostcode').value='RM10 8PS';document.getElementById('testerName').value='Sajid';document.getElementById('testerCompany').value='FRA PRO';document.getElementById('testerAddress').value='127 Baron Road, Dagenham, Essex, United Kingdom';document.getElementById('testerPostcode').value='RM8 1TX';document.getElementById('certNumberMode').value='auto';toggleCertMode();document.getElementById('appBody').innerHTML='';rowCount=0;addRow();removeImg('sig');removeImg('contractorSig');removeImg('logo');document.querySelectorAll('.field-error').forEach(function(e){e.classList.remove('field-error');});document.querySelectorAll('.field-error-msg.show').forEach(function(e){e.classList.remove('show');});document.querySelectorAll('.validation-banner.show').forEach(function(e){e.classList.remove('show');});document.querySelectorAll('.sidebar-item').forEach(function(e){e.classList.remove('completed','has-error');});setToday();genCertNum();if(DEFAULT_IMAGES.logo)loadImageFromURL(DEFAULT_IMAGES.logo,'logo');if(DEFAULT_IMAGES.sig)loadImageFromURL(DEFAULT_IMAGES.sig,'sig');if(DEFAULT_IMAGES.contractorSig)loadImageFromURL(DEFAULT_IMAGES.contractorSig,'contractorSig');goTo(0);showToast('Reset','info');}
+
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function showToast(m,t){t=t||'success';var el=document.getElementById('toast'),ic=document.getElementById('toastIcon'),mg=document.getElementById('toastMsg');el.className='toast '+t;ic.className=t==='success'?'fas fa-check-circle':t==='error'?'fas fa-exclamation-circle':'fas fa-info-circle';mg.textContent=m;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('show');},3500);}
 </script>
